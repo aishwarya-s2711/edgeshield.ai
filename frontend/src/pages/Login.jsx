@@ -176,8 +176,7 @@ export const Login = () => {
                         <option value="Administrator">Administrator</option>
                         <option value="Plant Manager">Plant Manager</option>
                         <option value="Maintenance Engineer">Maintenance Engineer</option>
-                        <option value="Production Supervisor">Production Supervisor</option>
-                        <option value="Security Analyst">Security Analyst</option>
+                        <option value="Machine Operator">Machine Operator</option>
                       </select>
                     </div>
                   </div>

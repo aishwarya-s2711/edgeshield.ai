@@ -59,47 +59,33 @@ export const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const basePath = React.useMemo(() => {
+    if (!user) return '/dashboard';
+    switch (user.role) {
+      case 'Administrator': return '/admin/dashboard';
+      case 'Plant Manager': return '/plant-manager/dashboard';
+      case 'Maintenance Engineer': return '/maintenance/dashboard';
+      case 'Machine Operator': return '/operator/dashboard';
+      default: return '/dashboard';
+    }
+  }, [user]);
+
   const SIDEBAR_ITEMS = [
-    { name: 'Dashboard', label: 'Dashboard Overview', icon: BarChart3, path: '/dashboard', roles: ['Administrator', 'Plant Manager', 'Production Supervisor', 'Security Analyst'] },
-    { name: 'Factories', label: 'Factories Console', icon: Globe, path: '/dashboard/factories', roles: ['Administrator', 'Plant Manager'] },
-    { name: 'Analytics', label: '📈 Enterprise Analytics', icon: BarChart3, path: '/dashboard/analytics', roles: ['Administrator', 'Plant Manager'] },
-    { name: 'Machine Monitoring', label: 'Machine Monitoring', icon: Activity, path: '/dashboard/machine-monitoring', roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Production Supervisor', 'Machine Operator'] },
-    { name: 'Predictive Maintenance', label: 'Predictive Maintenance', icon: TrendingUp, path: '/dashboard/predictive-maintenance', roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer'] },
-    { name: 'Digital Twin', label: 'Digital Twin Console', icon: HardDrive, path: '/dashboard/digital-twin', roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Production Supervisor', 'Machine Operator'] },
-    { name: 'Cybersecurity', label: '🛡 Security Operations Center (SOC)', icon: Shield, path: '/dashboard/cybersecurity', roles: ['Administrator', 'Security Analyst'] },
-    { name: 'Energy Optimization', label: 'Energy Optimization', icon: Zap, path: '/dashboard/energy-optimization', roles: ['Administrator', 'Plant Manager', 'Production Supervisor'] },
-    { name: 'Alerts', label: 'Alerts Center', icon: Bell, path: '/dashboard/alerts', roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Production Supervisor', 'Machine Operator', 'Security Analyst'] },
-    { name: 'Reports', label: 'Reports & BI', icon: FileText, path: '/dashboard/reports', roles: ['Administrator', 'Plant Manager', 'Security Analyst'] },
-    { name: 'AI Copilot', label: 'AI Copilot', icon: MessageSquare, path: '/dashboard/ai-copilot', roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer'] },
-    { name: 'User Management', label: 'User Management', icon: Users, path: '/dashboard/user-management', roles: ['Administrator'] },
-    { name: 'Settings', label: 'System Settings', icon: Settings, path: '/dashboard/settings', roles: ['Administrator'] },
+    { name: 'Dashboard', label: 'Dashboard Overview', icon: BarChart3, path: `${basePath}`, roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Machine Operator'] },
+    { name: 'User Management', label: 'User Management', icon: Users, path: `${basePath}/user-management`, roles: ['Administrator'] },
+    { name: 'Machine Monitoring', label: 'Machine Monitoring', icon: Activity, path: `${basePath}/machine-monitoring`, roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Machine Operator'] },
+    { name: 'Analytics', label: 'Enterprise Analytics', icon: BarChart3, path: `${basePath}/analytics`, roles: ['Administrator', 'Plant Manager'] },
+    { name: 'Predictive Maintenance', label: 'Predictive Maintenance', icon: TrendingUp, path: `${basePath}/predictive-maintenance`, roles: ['Maintenance Engineer'] },
+    { name: 'Digital Twin', label: 'Digital Twin Console', icon: HardDrive, path: `${basePath}/digital-twin`, roles: ['Maintenance Engineer'] },
+    { name: 'Factories', label: 'Factories Console', icon: Globe, path: `${basePath}/factories`, roles: ['Machine Operator'] },
+    { name: 'Alerts', label: 'Alerts Center', icon: Bell, path: `${basePath}/alerts`, roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Machine Operator'] },
+    { name: 'Reports', label: 'Reports & BI', icon: FileText, path: `${basePath}/reports`, roles: ['Administrator', 'Plant Manager'] },
+    { name: 'Settings', label: 'System Settings', icon: Settings, path: `${basePath}/settings`, roles: ['Administrator'] }
   ];
 
-  // Sidebar navigation tabs
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState('Dashboard'); 
-
-  // Role-Based dynamic routing redirection useEffect
-  useEffect(() => {
-    if (user?.role && (location.pathname === '/dashboard' || location.pathname === '/dashboard/')) {
-      const r = user.role.toLowerCase();
-      let targetPath = '/dashboard';
-      if (r === 'plant manager') {
-        targetPath = '/dashboard/factories';
-      } else if (r === 'maintenance engineer') {
-        targetPath = '/dashboard/predictive-maintenance';
-      } else if (r === 'production supervisor') {
-        targetPath = '/dashboard/machine-monitoring';
-      } else if (r === 'machine operator') {
-        targetPath = '/dashboard/machine-monitoring';
-      } else if (r === 'security analyst') {
-        targetPath = '/dashboard/cybersecurity';
-      }
-      navigate(targetPath, { replace: true });
-    }
-  }, [user, location.pathname, navigate]); 
-
-  // Synchronize activeTab state with URL path
+// Synchronize activeTab state with URL path
   useEffect(() => {
     const matched = SIDEBAR_ITEMS.find(item => item.path === location.pathname);
     if (matched && matched.name !== activeTab) {
