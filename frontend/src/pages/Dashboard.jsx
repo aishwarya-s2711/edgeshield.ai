@@ -1749,7 +1749,7 @@ export const Dashboard = () => {
                   }}
                   className={`w-full flex items-center gap-3 p-2.5 rounded-xl text-base md:text-sm md:text-xs font-bold transition-smooth ${
                     isActive 
-                      ? 'bg-primary-600 text-white shadow-md shadow-primary-600/10' 
+                      ? 'bg-slate-50 border-l-4 border-blue-600 text-blue-700 shadow-sm' 
                       : 'text-gray-500 hover:bg-primary-50 hover:text-primary-600'
                   }`}
                 >
@@ -2155,7 +2155,7 @@ export const Dashboard = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredMachines.map((machine) => (
-                      <div key={machine.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-smooth">
+                      <div key={machine.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1"><img src="/src/assets/machine_thumb.png" alt="Machine" className="w-full h-full object-contain" /></div>
@@ -2837,7 +2837,7 @@ export const Dashboard = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                   <div className="space-y-1">
                     <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Report Category</label>
-                    <select value={repSelectedType} onChange={(e) => setRepSelectedType(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white">
+                    <select value={repSelectedType} onChange={(e) => setRepSelectedType(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200">
                       <option value="Executive Summary">Executive Summary</option>
                       <option value="Machine Telemetry logs">Machine Telemetry logs</option>
                       <option value="Cybersecurity threat audits">Cybersecurity threat audits</option>
@@ -2846,7 +2846,7 @@ export const Dashboard = () => {
 
                   <div className="space-y-1">
                     <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Export Format</label>
-                    <select value={repSelectedFormat} onChange={(e) => setRepSelectedFormat(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white">
+                    <select value={repSelectedFormat} onChange={(e) => setRepSelectedFormat(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200">
                       <option value="PDF">PDF Sheet</option>
                       <option value="Excel">Excel Spreadsheet</option>
                       <option value="CSV">Comma Separated CSV</option>
@@ -2857,7 +2857,7 @@ export const Dashboard = () => {
                     <button 
                       onClick={handleExportReport}
                       disabled={actionLoading === 'export'}
-                      className="w-full py-3 md:py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white rounded-xl font-bold shadow-md shadow-primary-600/10 transition-smooth"
+                      className="w-full py-3 md:py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:-translate-y-0.5 hover:shadow-blue-500/40 transition-all duration-300"
                     >
                       {actionLoading === 'export' ? 'Generating...' : 'Trigger Download'}
                     </button>
@@ -2935,7 +2935,7 @@ export const Dashboard = () => {
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyDown={(e) => { if (e.key === 'Enter') handleSendPrompt(chatInput); }}
                       placeholder={voiceActive ? 'Listening… speak your query' : 'Ask anything about Detroit Hub #4...'}
-                      className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-smooth"
+                      className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-smooth"
                     />
                     <button
                       onClick={() => handleSendPrompt(chatInput)}
@@ -3085,11 +3085,11 @@ export const Dashboard = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                       <div className="space-y-1">
                         <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Factory Name</label>
-                        <input type="text" value={factoryName} onChange={(e) => setFactoryName(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white" />
+                        <input type="text" value={factoryName} onChange={(e) => setFactoryName(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200" />
                       </div>
                       <div className="space-y-1">
                         <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Timezone Location</label>
-                        <input type="text" value={timezone} onChange={(e) => setTimezone(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white" />
+                        <input type="text" value={timezone} onChange={(e) => setTimezone(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200" />
                       </div>
                     </div>
                   </div>
@@ -3222,7 +3222,7 @@ export const Dashboard = () => {
                     <select 
                       value={twinSelectedMachineId} 
                       onChange={(e) => setTwinSelectedMachineId(e.target.value)}
-                      className="border border-gray-200 rounded-xl px-3 py-1.5 bg-white text-base md:text-sm md:text-xs font-bold outline-none focus:bg-white cursor-pointer"
+                      className="border border-gray-200 rounded-xl px-3 py-1.5 bg-white text-base md:text-sm md:text-xs font-bold outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200 cursor-pointer"
                     >
                       {machines.map(m => (
                         <option key={m.id} value={m.id}>{m.name} ({m.id})</option>
@@ -3576,7 +3576,7 @@ export const Dashboard = () => {
                         value={factorySearch}
                         onChange={(e) => setFactorySearch(e.target.value)}
                         placeholder="Search name or code..."
-                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200"
                       />
                     </div>
                     <div className="space-y-1">
@@ -3584,7 +3584,7 @@ export const Dashboard = () => {
                       <select 
                         value={factoryFilterLocation}
                         onChange={(e) => setFactoryFilterLocation(e.target.value)}
-                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200"
                       >
                         <option value="All">All Locations</option>
                         <option value="USA">USA</option>
@@ -3597,7 +3597,7 @@ export const Dashboard = () => {
                       <select 
                         value={factoryFilterStatus}
                         onChange={(e) => setFactoryFilterStatus(e.target.value)}
-                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200"
                       >
                         <option value="All">All Statuses</option>
                         <option value="Healthy">Healthy (Green)</option>
@@ -3610,7 +3610,7 @@ export const Dashboard = () => {
                       <select 
                         value={factorySortKey}
                         onChange={(e) => setFactorySortKey(e.target.value)}
-                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all duration-200"
                       >
                         <option value="name">Factory Name (A-Z)</option>
                         <option value="health">Health score (Highest)</option>
