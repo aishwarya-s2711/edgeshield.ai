@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import machineThumb from '../assets/machine_thumb.png';
+import aiAvatar from '../assets/ai_avatar.png';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   AreaChart, Area, BarChart, Bar, RadialBarChart, RadialBar, ComposedChart
@@ -2124,7 +2126,7 @@ export const Dashboard = () => {
                       <div key={machine.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1"><img src="/src/assets/machine_thumb.png" alt="Machine" className="w-full h-full object-contain" /></div>
+                            <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1"><img src={machineThumb} alt="Machine" className="w-full h-full object-contain" /></div>
                             <div>
                               <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 leading-tight">{machine.name}</h4>
                               <span className="text-xs md:text-[10px] text-gray-500 font-bold uppercase tracking-wide">{machine.id} · {machine.type}</span>
@@ -2624,7 +2626,7 @@ export const Dashboard = () => {
       <div className="flex justify-between items-start">
         <div className="flex gap-3 items-center">
           <div className="w-12 h-12 rounded-lg bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1">
-            <img src="/src/assets/machine_thumb.png" alt="Machine" className="w-full h-full object-contain" />
+            <img src={machineThumb} alt="Machine" className="w-full h-full object-contain" />
           </div>
           <div>
             <h4 className="font-extrabold text-gray-900 text-base">{alt.machine}</h4>
@@ -2850,7 +2852,7 @@ export const Dashboard = () => {
                     <div key={msg.id} className={`flex gap-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                       {msg.sender === 'ai' && (
                         <div className="w-8 h-8 rounded-full flex-shrink-0 border border-blue-100 shadow-sm overflow-hidden bg-white mt-1">
-                          <img src="/src/assets/ai_avatar.png" alt="AI Avatar" className="w-full h-full object-cover" />
+                          <img src={aiAvatar} alt="AI Avatar" className="w-full h-full object-cover" />
                         </div>
                       )}
                       <div className={`max-w-[80%] rounded-2xl p-3.5 text-base md:text-sm md:text-xs ${msg.sender === 'user' ? 'bg-primary-600 text-white shadow-md' : 'bg-white border border-gray-200 text-gray-800'}`}>
