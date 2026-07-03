@@ -1969,7 +1969,7 @@ export const Dashboard = () => {
               {/* Primary KPI Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-gradient-to-br from-white to-slate-50 border border-gray-200 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-smooth">
                   <div className="flex justify-between items-start">
                     <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Factory Health</span>
                     <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"><Activity className="w-4 h-4" /></div>
@@ -1981,7 +1981,7 @@ export const Dashboard = () => {
                   <div className="text-xs md:text-[10px] text-gray-500 font-semibold">Continuous LSTM Health Index</div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-gradient-to-br from-white to-slate-50 border border-gray-200 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-smooth">
                   <div className="flex justify-between items-start">
                     <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Active Node Assets</span>
                     <div className="w-7 h-7 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><Cpu className="w-4 h-4" /></div>
@@ -1999,7 +1999,7 @@ export const Dashboard = () => {
                   <div className="text-xs md:text-[10px] text-gray-500 font-semibold">Device buses active on Modbus</div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-gradient-to-br from-white to-slate-50 border border-gray-200 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-smooth">
                   <div className="flex justify-between items-start">
                     <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">AI Security Score</span>
                     <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"><Shield className="w-4 h-4" /></div>
@@ -2011,7 +2011,7 @@ export const Dashboard = () => {
                   <div className="text-xs md:text-[10px] text-gray-500 font-semibold">{activeCyberAlertsCount} active threat anomalies</div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-gradient-to-br from-white to-slate-50 border border-gray-200 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-smooth">
                   <div className="flex justify-between items-start">
                     <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Energy Load Kw</span>
                     <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center"><Zap className="w-4 h-4" /></div>
@@ -2158,7 +2158,7 @@ export const Dashboard = () => {
                       <div key={machine.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-smooth">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center"><Cpu className="w-5.5 h-5.5" /></div>
+                            <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1"><img src="/src/assets/machine_thumb.png" alt="Machine" className="w-full h-full object-contain" /></div>
                             <div>
                               <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 leading-tight">{machine.name}</h4>
                               <span className="text-xs md:text-[10px] text-gray-500 font-bold uppercase tracking-wide">{machine.id} · {machine.type}</span>
@@ -2169,6 +2169,7 @@ export const Dashboard = () => {
                           </span>
                         </div>
 
+                        <div className="w-full bg-slate-100 rounded-full h-2 mb-4 overflow-hidden"><div className={`h-full ${machine.health > 80 ? 'bg-emerald-500' : machine.health > 50 ? 'bg-amber-500' : 'bg-red-500'}`} style={{width: `${machine.health}%`}}></div></div>
                         <div className="space-y-1.5 text-base md:text-sm md:text-xs text-gray-800 font-semibold grid grid-cols-2 gap-y-2 gap-x-4 border-t border-b border-gray-100 py-3">
                           <div>Temp: <span className="text-dark-950 font-bold">{machine.temp.toFixed(1)}°C</span></div>
                           <div>RPM: <span className="text-dark-950 font-bold">{machine.rpm}</span></div>
@@ -2651,46 +2652,32 @@ export const Dashboard = () => {
               {alViewMode === 'list' ? (
                 <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
                   <h3 className="text-base md:text-sm font-bold text-gray-900 mb-2">Central Incident Alerts Directory</h3>
-                  <div className="overflow-x-auto mt-4">
-                    <table className="w-full text-left border-collapse">
-                      <thead>
-                        <tr className="border-b border-gray-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-white/50">
-                          <th className="py-2.5 px-3">Alert ID</th>
-                          <th className="py-2.5 px-3">Source Machine</th>
-                          <th className="py-2.5 px-3 text-center">Priority</th>
-                          <th className="py-2.5 px-3 text-center">Alert Type</th>
-                          <th className="py-2.5 px-3">Description</th>
-                          <th className="py-2.5 px-3 text-right">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-dark-100 text-base md:text-sm md:text-xs font-semibold text-gray-800">
-                        {alerts.map((alt) => (
-                          <tr 
-                            key={alt.id} 
-                            onClick={() => { setSelectedAlertId(alt.id); setAlViewMode('detail'); }}
-                            className="hover:bg-white/50 transition-colors cursor-pointer"
-                          >
-                            <td className="py-3 px-3 font-mono text-xs md:text-[11px] text-gray-500">{alt.id}</td>
-                            <td className="py-3 px-3 font-bold text-gray-900">{alt.machine}</td>
-                            <td className="py-3 px-3 text-center">
-                              <span className={`inline-flex px-2 py-0.5 rounded text-xs md:text-[9px] font-extrabold uppercase border ${
-                                alt.priority === 'Critical' ? 'bg-red-50 text-red-600 border-red-200' : 'bg-orange-50 text-orange-600 border-orange-200'
-                              }`}>{alt.priority}</span>
-                            </td>
-                            <td className="py-3 px-3 text-center font-bold text-primary-600">{alt.type}</td>
-                            <td className="py-3 px-3 text-gray-500">{alt.summary}</td>
-                            <td className="py-3 px-3 text-right">
-                              <span className={`inline-flex px-2 py-0.5 rounded text-xs md:text-[9px] font-extrabold uppercase border ${
-                                alt.status === 'Open' ? 'bg-red-50 text-red-600 border-red-200' :
-                                alt.status === 'Acknowledged' ? 'bg-orange-50 text-orange-600 border-orange-200' :
-                                'bg-emerald-50 text-emerald-700 border-emerald-250'
-                              }`}>{alt.status}</span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+  {alerts.map((alt) => (
+    <div key={alt.id} onClick={() => { setSelectedAlertId(alt.id); setAlViewMode('detail'); }} className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md cursor-pointer transition-smooth flex flex-col gap-4">
+      <div className="flex justify-between items-start">
+        <div className="flex gap-3 items-center">
+          <div className="w-12 h-12 rounded-lg bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1">
+            <img src="/src/assets/machine_thumb.png" alt="Machine" className="w-full h-full object-contain" />
+          </div>
+          <div>
+            <h4 className="font-extrabold text-gray-900 text-base">{alt.machine}</h4>
+            <span className="font-mono text-xs text-gray-400">{alt.id}</span>
+          </div>
+        </div>
+        <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-extrabold uppercase border ${alt.priority === 'Critical' ? 'bg-red-50 text-red-600 border-red-200' : 'bg-orange-50 text-orange-600 border-orange-200'}`}>{alt.priority}</span>
+      </div>
+      <div>
+        <p className="font-bold text-sm text-gray-800 mb-1">{alt.type}</p>
+        <p className="text-xs text-gray-500 leading-relaxed">{alt.summary}</p>
+      </div>
+      <div className="pt-3 border-t border-gray-50 flex justify-between items-center mt-auto">
+        <span className="text-[10px] text-gray-400 font-semibold">{alt.timestamp || 'Just now'}</span>
+        <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-extrabold uppercase border ${alt.status === 'Active' ? 'bg-blue-50 text-blue-600 border-blue-200' : 'bg-emerald-50 text-emerald-600 border-emerald-200'}`}>{alt.status}</span>
+      </div>
+    </div>
+  ))}
+</div>
                 </div>
               ) : (
                 /* Detail mode */
@@ -2894,7 +2881,12 @@ export const Dashboard = () => {
 
                 <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-white/10">
                   {chatMessages.map(msg => (
-                    <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div key={msg.id} className={`flex gap-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      {msg.sender === 'ai' && (
+                        <div className="w-8 h-8 rounded-full flex-shrink-0 border border-blue-100 shadow-sm overflow-hidden bg-white mt-1">
+                          <img src="/src/assets/ai_avatar.png" alt="AI Avatar" className="w-full h-full object-cover" />
+                        </div>
+                      )}
                       <div className={`max-w-[80%] rounded-2xl p-3.5 text-base md:text-sm md:text-xs ${msg.sender === 'user' ? 'bg-primary-600 text-white shadow-md' : 'bg-white border border-gray-200 text-gray-800'}`}>
                         <div className="font-semibold leading-relaxed whitespace-pre-wrap">{parseMarkdown(msg.text)}</div>
                         {msg.widget && renderCopilotWidget(msg.widget)}
