@@ -10,13 +10,13 @@ class SecurityMonitor:
         updated_devices = []
 
         for d in devices:
-            d_id = d.id
-            risk_level = d.risk_level
-            trust_score = d.trust_score
-            packets_sec = d.packets_sec
-            error_rate = d.error_rate
-            status = d.status
-            machine = d.machine
+            d_id = d.get('id', '')
+            risk_level = d.get('riskLevel', 'Low')
+            trust_score = d.get('trustScore', 100)
+            packets_sec = d.get('packetsSec', 0)
+            error_rate = d.get('errorRate', 0.0)
+            status = d.get('status', 'Online')
+            machine = d.get('machine', 'N/A')
 
             # 1. DEV-PLC04 critical threat
             if d_id == 'DEV-PLC04' and 25 <= demo_time < 45:
@@ -100,11 +100,11 @@ class SecurityMonitor:
 
             updated_devices.append({
                 "id": d_id,
-                "name": d.name,
-                "ip": d.ip,
-                "type": d.type,
-                "mac": d.mac,
-                "firmware": d.firmware,
+                "name": d.get('name', ''),
+                "ip": d.get('ip', ''),
+                "type": d.get('type', ''),
+                "mac": d.get('mac', ''),
+                "firmware": d.get('firmware', ''),
                 "machine": machine,
                 "riskLevel": risk_level,
                 "trustScore": trust_score,
