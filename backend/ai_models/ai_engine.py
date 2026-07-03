@@ -30,14 +30,14 @@ def analyze_telemetry(machine, history=None, thresholds=None):
         thresholds = {"warning": 80, "critical": 50}
 
     # ─── Extract telemetry fields (supports ORM model or plain dict) ───────────
-    m_id       = getattr(machine, 'id', '') or machine.get('id', '')
-    temp       = float(getattr(machine, 'temp', 40.0) or machine.get('temp', 40.0))
-    vibration  = float(getattr(machine, 'vibration', 0.5) or machine.get('vibration', 0.5))
-    current    = float(getattr(machine, 'current', 10.0) or machine.get('current', 10.0))
-    rpm        = int(getattr(machine, 'rpm', 1500) or machine.get('rpm', 1500))
-    pressure   = float(getattr(machine, 'pressure', 0.0) or machine.get('pressure', 0.0))
-    voltage    = float(getattr(machine, 'voltage', 415.0) or machine.get('voltage', 415.0))
-    energy     = float(getattr(machine, 'energy', 15.0) or machine.get('energy', 15.0))
+    m_id       = machine.id if not isinstance(machine, dict) else machine.get('id', '')
+    temp       = float(machine.temp if not isinstance(machine, dict) else machine.get('temp', 40.0))
+    vibration  = float(machine.vibration if not isinstance(machine, dict) else machine.get('vibration', 0.5))
+    current    = float(machine.current if not isinstance(machine, dict) else machine.get('current', 10.0))
+    rpm        = int(machine.rpm if not isinstance(machine, dict) else machine.get('rpm', 1500))
+    pressure   = float(machine.pressure if not isinstance(machine, dict) else machine.get('pressure', 0.0))
+    voltage    = float(machine.voltage if not isinstance(machine, dict) else machine.get('voltage', 415.0))
+    energy     = float(machine.energy if not isinstance(machine, dict) else machine.get('energy', 15.0))
 
     health             = 100
     status             = 'Healthy'

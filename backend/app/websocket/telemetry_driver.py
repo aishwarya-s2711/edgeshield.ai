@@ -77,15 +77,15 @@ class TelemetryDriver:
         """Built-in scripted sensor simulation with realistic failure scenarios."""
         updated = []
         for m in machines:
-            m_id      = getattr(m, 'id', None) or m.get('id', '')
-            temp      = float(getattr(m, 'temp', 40.0) or m.get('temp', 40.0))
-            vibration = float(getattr(m, 'vibration', 0.5) or m.get('vibration', 0.5))
-            current   = float(getattr(m, 'current', 10.0) or m.get('current', 10.0))
-            rpm       = int(getattr(m, 'rpm', 1500) or m.get('rpm', 1500))
-            pressure  = float(getattr(m, 'pressure', 0.0) or m.get('pressure', 0.0))
+            m_id      = m.id
+            temp      = float(m.temp)
+            vibration = float(m.vibration)
+            current   = float(m.current)
+            rpm       = int(m.rpm)
+            pressure  = float(m.pressure)
             baseline  = self.MACHINE_BASELINES.get(m_id, {'energy': 15.0, 'voltage': 415.0})
-            voltage   = float(getattr(m, 'voltage', baseline['voltage']) or m.get('voltage', baseline['voltage']))
-            energy    = float(getattr(m, 'energy', baseline['energy']) or m.get('energy', baseline['energy']))
+            voltage   = float(m.voltage)
+            energy    = float(m.energy)
 
             temp_change    = random.uniform(-0.4, 0.4)
             vib_change     = random.uniform(-0.075, 0.075)
@@ -125,10 +125,10 @@ class TelemetryDriver:
 
             updated.append({
                 "id":        m_id,
-                "name":      getattr(m, 'name', None) or m.get('name', ''),
-                "type":      getattr(m, 'type', None) or m.get('type', ''),
-                "location":  getattr(m, 'location', None) or m.get('location', ''),
-                "dept":      getattr(m, 'dept', None) or m.get('dept', ''),
+                "name":      m.name,
+                "type":      m.type,
+                "location":  m.location,
+                "dept":      m.dept,
                 "voltage":   voltage,
                 "energy":    final_energy,
                 "temp":      final_temp,

@@ -10,13 +10,13 @@ class SecurityMonitor:
         updated_devices = []
 
         for d in devices:
-            d_id = getattr(d, 'id', None) or d.get('id', '')
-            risk_level = getattr(d, 'riskLevel', None) or d.get('riskLevel', 'Low')
-            trust_score = getattr(d, 'trustScore', None) or d.get('trustScore', 100)
-            packets_sec = getattr(d, 'packetsSec', None) or d.get('packetsSec', 0)
-            error_rate = getattr(d, 'errorRate', None) or d.get('errorRate', 0.0)
-            status = getattr(d, 'status', None) or d.get('status', 'Online')
-            machine = getattr(d, 'machine', None) or d.get('machine', 'N/A')
+            d_id = d.id
+            risk_level = d.riskLevel
+            trust_score = d.trustScore
+            packets_sec = d.packetsSec
+            error_rate = d.errorRate
+            status = d.status
+            machine = d.machine
 
             # 1. DEV-PLC04 critical threat
             if d_id == 'DEV-PLC04' and 25 <= demo_time < 45:
@@ -100,11 +100,11 @@ class SecurityMonitor:
 
             updated_devices.append({
                 "id": d_id,
-                "name": getattr(d, 'name', None) or d.get('name', ''),
-                "ip": getattr(d, 'ip', None) or d.get('ip', ''),
-                "type": getattr(d, 'type', None) or d.get('type', ''),
-                "mac": getattr(d, 'mac', None) or d.get('mac', ''),
-                "firmware": getattr(d, 'firmware', None) or d.get('firmware', ''),
+                "name": d.name,
+                "ip": d.ip,
+                "type": d.type,
+                "mac": d.mac,
+                "firmware": d.firmware,
                 "machine": machine,
                 "riskLevel": risk_level,
                 "trustScore": trust_score,
