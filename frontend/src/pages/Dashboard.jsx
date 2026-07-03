@@ -1679,18 +1679,7 @@ export const Dashboard = () => {
     navigate('/login');
   };
 
-  const rolePermissions = {
-    'administrator': ['Dashboard', 'Factories', 'Analytics', 'Machine Monitoring', 'Predictive Maintenance', 'Digital Twin', 'Cybersecurity', 'Energy Optimization', 'Alerts', 'Reports', 'AI Copilot', 'User Management', 'Settings'],
-    'plant manager': ['Dashboard', 'Factories', 'Analytics', 'Machine Monitoring', 'Predictive Maintenance', 'Digital Twin', 'Energy Optimization', 'Alerts', 'Reports', 'AI Copilot'],
-    'maintenance engineer': ['Machine Monitoring', 'Predictive Maintenance', 'Digital Twin', 'Alerts', 'AI Copilot'],
-    'production supervisor': ['Dashboard', 'Machine Monitoring', 'Digital Twin', 'Energy Optimization', 'Alerts'],
-    'machine operator': ['Machine Monitoring', 'Digital Twin', 'Alerts'],
-    'security analyst': ['Dashboard', 'Cybersecurity', 'Alerts', 'Reports']
-  };
-
-  const currentRole = (user?.role || '').toLowerCase();
-  const allowedTabs = rolePermissions[currentRole] || [];
-  const isAuthorized = allowedTabs.includes(activeTab);
+  const isAuthorized = SIDEBAR_ITEMS.some(item => item.name === activeTab && item.roles.includes(user?.role));
 
   return (
     <div className="min-h-screen bg-white text-gray-900 flex font-sans overflow-hidden">
@@ -1930,16 +1919,7 @@ export const Dashboard = () => {
                 <p className="text-base md:text-sm md:text-xs text-gray-500">You do not have administrative clearance to access the {activeTab} console.</p>
               </div>
               <button
-                onClick={() => {
-                  let targetPath = '/dashboard';
-                  const r = currentRole;
-                  if (r === 'plant manager') targetPath = '/dashboard/factories';
-                  else if (r === 'maintenance engineer') targetPath = '/dashboard/predictive-maintenance';
-                  else if (r === 'production supervisor') targetPath = '/dashboard/machine-monitoring';
-                  else if (r === 'machine operator') targetPath = '/dashboard/machine-monitoring';
-                  else if (r === 'security analyst') targetPath = '/dashboard/cybersecurity';
-                  navigate(targetPath);
-                }}
+                onClick={() => navigate(basePath)}
                 className="py-2 px-6 bg-primary-600 hover:bg-primary-750 text-white text-base md:text-sm md:text-xs font-bold rounded-xl shadow-md transition-smooth"
               >
                 Return to Safe Dashboard
