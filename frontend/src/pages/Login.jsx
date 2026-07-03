@@ -18,10 +18,10 @@ import { useAuth } from '../context/AuthContext';
 import Alert from '../components/Alert';
 import Spinner from '../components/Spinner';
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 export const Login = () => {
-  const { login } = useAuth();
+  const { login, signup } = useAuth();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isSignUp, setIsSignUp] = useState(false);
@@ -86,18 +86,19 @@ export const Login = () => {
 
     try {
       if (isSignUp) {
-        setAuthSuccess(`Registration requested for ${data.email}. Awaiting Administrator approval for OT Network access.`);
+        await signup(data.name, data.email, data.password, data.dept);
+        setAuthSuccess('Account created successfully. Please sign in.');
         setTimeout(() => {
           setIsSignUp(false);
           reset();
           setIsSubmitting(false);
-        }, 2000);
+        }, 1500);
       } else {
         await login(data.email, data.password);
         navigate('/dashboard');
       }
     } catch (err) {
-      setAuthError('Authentication failed. Please verify your credentials or check your VPN connection to the industrial network.');
+      setAuthError(err.message || 'Authentication failed. Please verify your credentials.');
       setIsSubmitting(false);
     }
   };

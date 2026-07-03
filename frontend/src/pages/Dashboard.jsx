@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
-const API_URL = import.meta.env.VITE_API_URL || "${API_URL}";
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 const WS_URL = API_URL.replace(/^http/, "ws");
 
 // Pre-defined realistic machine telemetry data with extra fields for all modules
