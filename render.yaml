@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: edgeshield-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    rootDir: backend
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: JWT_SECRET
+        value: generate_a_secure_random_key_here
+
+  - type: web
+    name: edgeshield-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    rootDir: frontend
+    envVars:
+      - key: VITE_API_URL
+        value: https://edgeshield-backend.onrender.com
