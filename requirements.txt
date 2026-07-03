@@ -4,4 +4,4 @@ sqlalchemy>=2.0.25
 pydantic>=2.9.0
 python-jose[cryptography]
 passlib[bcrypt]
-bcrypt
+bcrypt==3.2.0
