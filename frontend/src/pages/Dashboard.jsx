@@ -4106,7 +4106,7 @@ export const Dashboard = () => {
       </AnimatePresence>
 
       {/* Floating Toast Notification Container */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none">
+      <div className="fixed bottom-4 left-4 right-4 md:bottom-6 md:right-6 md:left-auto md:w-full md:max-w-sm z-50 flex flex-col gap-3 pointer-events-none">
         <AnimatePresence>
           {toasts.map(t => (
             <motion.div
