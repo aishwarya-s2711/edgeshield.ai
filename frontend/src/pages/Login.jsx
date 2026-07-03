@@ -112,31 +112,8 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-white font-sans overflow-hidden relative">
-      
-      {/* Left Section - Hero Visuals */}
-      <div className="hidden lg:flex w-1/2 flex-col justify-center items-center bg-slate-50 relative p-12 overflow-hidden border-r border-gray-100">
-        <div className="absolute inset-0 w-full h-full opacity-60 z-0">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none" />
-        </div>
-        
-        <div className="z-10 w-full max-w-xl text-center flex flex-col items-center">
-          <div className="w-full h-[32rem] relative mb-12 flex items-center justify-center bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 border border-gray-100">
-             <img src="/src/assets/hero.png" alt="Smart Factory AI" className="w-full h-full object-contain rounded-2xl drop-shadow-2xl hover:scale-105 transition-transform duration-700" />
-          </div>
-          
-          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight leading-tight">
-            Industrial AI for <br/><span className="text-blue-600 bg-blue-50 px-2 rounded-lg leading-relaxed">Smart Manufacturing</span>
-          </h1>
-          <p className="mt-4 text-base font-semibold text-gray-500 max-w-sm">
-            Empower your OT networks with localized explainable AI, proactive maintenance, and edge-deployed threat detection.
-          </p>
-        </div>
-      </div>
-
-      {/* Right Section - Authenticaton Form */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-16 relative">
-        <div className="w-full max-w-[420px]">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 font-sans p-6 relative">
+      <div className="w-full max-w-[420px] bg-white p-8 md:p-10 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">
           
           {/* Header Branding */}
           <div className="text-center mb-8 flex flex-col items-center">
@@ -314,7 +291,6 @@ export const Login = () => {
             </p>
           </div>
 
-        </div>
       </div>
     </div>
   );
