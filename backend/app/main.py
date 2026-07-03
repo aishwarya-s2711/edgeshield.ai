@@ -20,11 +20,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
-from .database import engine, Base, get_db
-from . import models, auth
-from .ai_engine import analyze_telemetry
-from .telemetry_driver import TelemetryDriver
-from .security_monitor import SecurityMonitor
+from app.database.database import engine, Base, get_db
+from app.models import models
+from app.security import auth
+from ai_models.ai_engine import analyze_telemetry
+from app.websocket.telemetry_driver import TelemetryDriver
+from app.security.security_monitor import SecurityMonitor
 
 # ─── Initialize all SQLite tables ────────────────────────────────────────────
 Base.metadata.create_all(bind=engine)
