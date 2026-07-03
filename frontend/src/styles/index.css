@@ -12,8 +12,14 @@
 
 @layer base {
   body {
-    @apply bg-white text-dark-900 font-sans antialiased selection:bg-primary-100 selection:text-primary-700;
+    @apply bg-[#0B1120] text-dark-900 font-sans antialiased selection:bg-primary-100 selection:text-primary-700;
   }
+}
+
+/* Hide Edge/IE default password reveal icon */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
 }
 
 /* Custom Scrollbar */
