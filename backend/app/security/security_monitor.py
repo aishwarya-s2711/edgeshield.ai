@@ -11,10 +11,10 @@ class SecurityMonitor:
 
         for d in devices:
             d_id = d.id
-            risk_level = d.riskLevel
-            trust_score = d.trustScore
-            packets_sec = d.packetsSec
-            error_rate = d.errorRate
+            risk_level = d.risk_level
+            trust_score = d.trust_score
+            packets_sec = d.packets_sec
+            error_rate = d.error_rate
             status = d.status
             machine = d.machine
 
