@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { msalConfig } from '../authConfig';
+import { msalConfig } from '../utils/authConfig';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Shield, 
