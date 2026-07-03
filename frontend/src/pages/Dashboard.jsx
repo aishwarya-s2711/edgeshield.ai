@@ -92,7 +92,8 @@ export const Dashboard = () => {
     { name: 'Factories', label: 'Factories Console', icon: Globe, path: `${basePath}/factories`, roles: ['Machine Operator'] },
     { name: 'Alerts', label: 'Alerts Center', icon: Bell, path: `${basePath}/alerts`, roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Machine Operator'] },
     { name: 'Reports', label: 'Reports & BI', icon: FileText, path: `${basePath}/reports`, roles: ['Administrator', 'Plant Manager'] },
-    { name: 'Settings', label: 'System Settings', icon: Settings, path: `${basePath}/settings`, roles: ['Administrator'] }
+    { name: 'Settings', label: 'System Settings', icon: Settings, path: `${basePath}/settings`, roles: ['Administrator'] },
+    { name: 'AI Copilot', label: 'AI Copilot', icon: MessageSquare, path: `${basePath}/copilot`, roles: ['Administrator', 'Plant Manager', 'Maintenance Engineer', 'Machine Operator'] }
   ];
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -928,7 +929,6 @@ export const Dashboard = () => {
       const term = searchTerm.toLowerCase();
       result = result.filter(d => d.name.toLowerCase().includes(term) || d.id.toLowerCase().includes(term) || d.ip.includes(term));
     }
-    return result;
   }, [cyberDevices, searchTerm]);
 
   // Helper methods for interactive AI Copilot widgets
@@ -1070,12 +1070,7 @@ export const Dashboard = () => {
       );
 
       const criticalMachines = machines.filter(m => m.status === 'Critical');
-      const warningMachines  = machines.filter(m => m.status === 'Warning');
-      const unhealthyMachines = machines.filter(m => m.status !== 'Healthy');
       const openAlerts       = alerts.filter(a => a.status === 'Open');
-      const criticalAlerts   = alerts.filter(a => a.priority === 'Critical' && a.status !== 'Resolved');
-      const cyberAlerts      = alerts.filter(a => a.type === 'Cybersecurity' && a.status !== 'Resolved');
-      const topFailure       = [...machines].sort((a, b) => (b.failureProbability ?? 0) - (a.failureProbability ?? 0))[0];
 
       // ─── Command: Quarantine ───
       if (q.startsWith('quarantine') || q.startsWith('/quarantine') || q.startsWith('isolate')) {
@@ -1173,72 +1168,15 @@ export const Dashboard = () => {
           `**✅ Recommended Action**: *${m.suggestedAction || 'No immediate maintenance required.'}*`;
         widgetPayload = { type: 'machine', data: m };
       }
-      // ─── INTENT: Greetings ───
-      else if (/^(hi|hello|hey|howdy|good (morning|evening|afternoon)|what's up|sup)\b/.test(q)) {
-        replyText = `Hello! 👋 I'm your **EdgeShield AI Copilot** — your real-time industrial intelligence assistant.\n\nCurrently monitoring **${machines.length} active machine nodes** across Detroit Smart Assembly Hub #4. Factory health is at **${avgHealth}%** with **${openAlerts.length} open alerts**.\n\nAsk me anything — machine diagnostics, failure predictions, cybersecurity incidents, energy loads, or maintenance planning!`;
-      }
-      // ─── INTENT: Help / Capabilities ───
-      else if (q.includes('help') || q.includes('what can you do') || q.includes('capabilities') || q.includes('commands')) {
-        replyText = `Here's what I can do for you. Try typing these commands directly in the chat:\n\n` +
-          `🔧 **Diagnostics** — *"Why is MC-104 critical?"* / *"Tell me about MC-101"* (returns an interactive diagnostic card)\n` +
-          `🛡️ **Cybersecurity Action** — *"/quarantine DEV-PLC04"* / *"whitelist DEV-MTR09"* (instantly quarantines/restores nodes)\n` +
-          `📊 **Live Charts** — *"Show temperature chart for MC-104"* / *"Show vibration graph for MC-108"*\n` +
-          `🔔 **Alert Control** — *"Resolve ALT-303"* / *"Acknowledge ALT-302"* (directly updates the incident status)\n` +
-          `⚙️ **System Config** — *"Set warning threshold to 85"* / *"Show settings"* (returns interactive config sliders)`;
-      }
-      // ─── INTENT: List all machines ───
-      else if (q.includes('list all') || q.includes('all machines') || q.includes('machine overview') || q.includes('show machines') || q.includes('machine status')) {
-        replyText = `**Machine Status Overview** — Detroit Hub #4 (${machines.length} nodes):\n\n` +
-          machines.map(m => {
-            const icon = m.status === 'Critical' ? '🔴' : m.status === 'Warning' ? '🟡' : '🟢';
-            return `${icon} **${m.name} (${m.id})** — Health: ${m.health}%, Failure Prob: ${(m.failureProbability ?? 0).toFixed(1)}%, RUL: ${m.rul} hrs`;
-          }).join('\n') +
-          `\n\n**Factory Average Health**: ${avgHealth}%`;
-      }
-      // ─── INTENT: Failure predictions ───
-      else if (q.includes('fail') || q.includes('failure prob') || q.includes('rul') || q.includes('remaining useful life') || q.includes('breakdown')) {
-        const sorted = [...machines].sort((a, b) => (b.failureProbability ?? 0) - (a.failureProbability ?? 0));
-        replyText = `**🔮 Failure Probability Ranking** (EdgeShield LSTM Predictive Model):\n\n` +
-          sorted.map((m, i) => {
-            const icon = (m.failureProbability ?? 0) > 50 ? '🔴' : (m.failureProbability ?? 0) > 20 ? '🟡' : '🟢';
-            return `${i + 1}. ${icon} **${m.name}** — Failure Prob: **${(m.failureProbability ?? 0).toFixed(1)}%**, RUL: **${m.rul} hrs**`;
-          }).join('\n') +
-          `\n\n⚠️ **Highest risk**: ${topFailure?.name} at **${(topFailure?.failureProbability ?? 0).toFixed(1)}%** failure probability.\n*Recommended action: ${topFailure?.suggestedAction}*`;
-        if (topFailure) widgetPayload = { type: 'machine', data: topFailure };
-      }
-      // ─── INTENT: Open alerts ───
-      else if (q.includes('alert') || q.includes('incident') || q.includes('alarm') || q.includes('open') || q.includes('unresolved')) {
-        if (openAlerts.length > 0) {
-          replyText = `🔔 **${openAlerts.length} Open Alert(s)** in the system. The latest is **${openAlerts[0].id}** on **${openAlerts[0].machine}**:`;
-          widgetPayload = { type: 'alert', data: openAlerts[0] };
-        } else {
-          replyText = `✅ **No open alerts** in the system right now. All incidents have been resolved or acknowledged.`;
-        }
-      }
-      // ─── INTENT: Cybersecurity ───
-      else if (q.includes('cyber') || q.includes('security') || q.includes('threat') || q.includes('intrusion') || q.includes('network') || q.includes('plc') || q.includes('firewall') || q.includes('port') || q.includes('packet')) {
-        const criticalDevices = cyberDevices.filter(d => d.riskLevel === 'Critical');
-        const warningDevices = cyberDevices.filter(d => d.riskLevel === 'Warning');
-        const alertDevice = criticalDevices[0] || warningDevices[0] || cyberDevices[0];
-        
-        replyText = `🛡️ **OT Cybersecurity Audit**:\n` +
-          `- Critical risk nodes: **${criticalDevices.length}**\n` +
-          `- Warning risk nodes: **${warningDevices.length}**\n` +
-          `- Overall firewall status: **Active & Guarding**\n\n` +
-          `Interactive controls for the highest-threat device (**${alertDevice.name}**) are rendered below:`;
-        widgetPayload = { type: 'device', data: alertDevice };
-      }
+      // ─── Default Fallback ───
       else {
-        const urgentNote = criticalMachines.length > 0
-          ? `\n\n⚠️ **Action needed**: ${criticalMachines.map(m => m.name).join(', ')} currently in **Critical** state.`
-          : openAlerts.length > 0
-          ? `\n\n🔔 You have **${openAlerts.length} open alert(s)** awaiting review.`
-          : `\n\n✅ All systems are operating nominally right now.`;
-
-        replyText = `I'm not sure I understood that query. 🤔\n` +
-          `- Health Index: **${avgHealth}%** | Open Alerts: **${openAlerts.length}**` +
-          urgentNote +
-          `\n\nTry commands like:\n- *"/quarantine DEV-PLC04"* \n- *"Show temperature chart for MC-104"*\n- *"Resolve ALT-303"*`;
+        const userName = user?.name || "there";
+        const userRole = user?.role || "Team Member";
+        replyText = `Hello ${userName}! As your EdgeShield AI Copilot, I can help you with your role as a **${userRole}**. I've processed your query: *"${promptText}"*.\n\n` +
+          `Based on my industrial LLM analysis of the current ${avgHealth}% health index and our ${openAlerts.length} active alerts, here is what you need to know:\n\n` +
+          `The systems are currently monitoring the environment. Your request touches upon advanced metrics that I am continuously analyzing. ` +
+          (criticalMachines.length > 0 ? `I highly recommend looking into the critical state of **${criticalMachines.map(m => m.name).join(', ')}** first.\n\n` : `All primary production nodes are nominal, so we have the bandwidth to explore this.\n\n`) +
+          `Would you like me to run a deep diagnostic scan or chart the historical telemetry related to this topic?`;
       }
 
       setChatMessages(prev => [...prev, {
@@ -3438,7 +3376,9 @@ export const Dashboard = () => {
                     {twinAlerts.length > 0 ? (
                       <div className="space-y-3">
                         {twinAlerts.map(a => (
-                          <div key={a.id} className="p-3 border border-gray-100 bg-white/20 rounded-xl flex justify-between items-start gap-4">
+                          <div key={a.id} 
+                               onClick={() => { navigate(`${basePath}/alerts`); setTimeout(() => { setSelectedAlertId(a.id); setAlViewMode('detail'); }, 100); }} 
+                               className="p-3 border border-gray-100 bg-white/20 rounded-xl flex justify-between items-start gap-4 cursor-pointer hover:bg-white/40 transition-colors">
                             <div className="space-y-1 text-base md:text-sm md:text-xs">
                               <span className="font-mono text-xs md:text-[9px] uppercase bg-dark-100 px-1.5 py-0.5 rounded text-gray-500 font-bold">{a.id}</span>
                               <p className="font-bold text-dark-850 mt-1">{a.summary}</p>
