@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+const API_URL = import.meta.env.VITE_API_URL || "${API_URL}";
+const WS_URL = API_URL.replace(/^http/, "ws");
 
 const AuthContext = createContext(null);
 
@@ -45,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       // Fetch from /api/me to synchronize/refresh
-      fetch('http://127.0.0.1:8000/api/me', {
+      fetch(`${API_URL}/api/me`, {
         headers: { 'Authorization': `Bearer ${savedToken}` }
       })
       .then(res => {
@@ -75,7 +77,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/login', {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

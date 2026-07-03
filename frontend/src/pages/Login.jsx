@@ -17,6 +17,8 @@ import {
 import { useAuth } from '../context/AuthContext';
 import Alert from '../components/Alert';
 import Spinner from '../components/Spinner';
+const API_URL = import.meta.env.VITE_API_URL || "${API_URL}";
+const WS_URL = API_URL.replace(/^http/, "ws");
 
 export const Login = () => {
   const { login } = useAuth();
@@ -85,7 +87,7 @@ export const Login = () => {
 
     try {
       if (isSignUp) {
-        const response = await fetch('http://127.0.0.1:8000/api/signup', {
+        const response = await fetch(`${API_URL}/api/signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

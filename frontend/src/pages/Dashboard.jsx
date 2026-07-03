@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL || "${API_URL}";
+const WS_URL = API_URL.replace(/^http/, "ws");
 
 // Pre-defined realistic machine telemetry data with extra fields for all modules
 const INITIAL_MACHINES = [
@@ -344,7 +346,7 @@ export const Dashboard = () => {
         const headers = { 'Authorization': `Bearer ${token}` };
         
         // Fetch machines
-        const mRes = await fetch('http://127.0.0.1:8000/api/machines', { headers });
+        const mRes = await fetch(`${API_URL}/api/machines`, { headers });
         if (mRes.ok) {
           const mData = await mRes.json();
           if (mData && mData.length > 0) {
@@ -360,7 +362,7 @@ export const Dashboard = () => {
         }
 
         // Fetch alerts
-        const aRes = await fetch('http://127.0.0.1:8000/api/alerts', { headers });
+        const aRes = await fetch(`${API_URL}/api/alerts`, { headers });
         if (aRes.ok) {
           const aData = await aRes.json();
           if (aData && aData.length > 0) setAlerts(aData);
@@ -368,7 +370,7 @@ export const Dashboard = () => {
 
         // Fetch settings
         try {
-          const sRes = await fetch('http://127.0.0.1:8000/api/settings', { headers });
+          const sRes = await fetch(`${API_URL}/api/settings`, { headers });
           if (sRes.ok) {
             const sData = await sRes.json();
             setHealthWarnThreshold(sData.healthWarnThreshold);
@@ -382,7 +384,7 @@ export const Dashboard = () => {
 
         // Fetch devices
         try {
-          const dRes = await fetch('http://127.0.0.1:8000/api/devices', { headers });
+          const dRes = await fetch(`${API_URL}/api/devices`, { headers });
           if (dRes.ok) {
             const dData = await dRes.json();
             if (dData && dData.length > 0) setCyberDevices(dData);
@@ -526,7 +528,7 @@ export const Dashboard = () => {
 
     const connectWS = () => {
       try {
-        ws = new WebSocket('ws://127.0.0.1:8000/ws/live');
+        ws = new WebSocket(`${WS_URL}/ws/live`);
 
         ws.onopen = async () => {
           setIsBackendConnected(true);
@@ -540,7 +542,7 @@ export const Dashboard = () => {
           const offlineAlerts = JSON.parse(localStorage.getItem('edgeshield_offline_alerts') || '[]');
           if (offlineAlerts.length > 0 && token) {
             try {
-              const res = await fetch('http://127.0.0.1:8000/api/alerts/sync', {
+              const res = await fetch(`${API_URL}/api/alerts/sync`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -787,7 +789,7 @@ export const Dashboard = () => {
     const fetchUsers = async () => {
       if (token) {
         try {
-          const res = await fetch('http://127.0.0.1:8000/api/users', {
+          const res = await fetch(`${API_URL}/api/users`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           if (res.ok) {
@@ -937,7 +939,7 @@ export const Dashboard = () => {
     if (isBackendConnected && token) {
       try {
         const endpoint = newStatus === 'Acknowledged' ? 'acknowledge' : 'resolve';
-        await fetch(`http://127.0.0.1:8000/api/alerts/${alertId}/${endpoint}`, {
+        await fetch(`${API_URL}/api/alerts/${alertId}/${endpoint}`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -954,7 +956,7 @@ export const Dashboard = () => {
     setAlerts(prev => prev.map(a => a.id === alertId ? { ...a, assignedTo: assignee } : a));
     if (isBackendConnected && token) {
       try {
-        await fetch(`http://127.0.0.1:8000/api/alerts/${alertId}/assign`, {
+        await fetch(`${API_URL}/api/alerts/${alertId}/assign`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -974,7 +976,7 @@ export const Dashboard = () => {
   const toggleDeviceQuarantine = async (deviceId) => {
     if (isBackendConnected && token) {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/devices/quarantine', {
+        const response = await fetch(`${API_URL}/api/devices/quarantine`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1654,7 +1656,7 @@ export const Dashboard = () => {
 
     if (isBackendConnected && token) {
       try {
-        await fetch('http://127.0.0.1:8000/api/settings', {
+        await fetch(`${API_URL}/api/settings`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -2702,7 +2704,7 @@ export const Dashboard = () => {
                     if (isBackendConnected && token) {
                       try {
                         const endpoint = newStatus === 'Acknowledged' ? 'acknowledge' : 'resolve';
-                        await fetch(`http://127.0.0.1:8000/api/alerts/${alertDetails.id}/${endpoint}`, {
+                        await fetch(`${API_URL}/api/alerts/${alertDetails.id}/${endpoint}`, {
                           method: 'POST',
                           headers: {
                             'Authorization': `Bearer ${token}`
@@ -2724,7 +2726,7 @@ export const Dashboard = () => {
                     
                     if (isBackendConnected && token) {
                       try {
-                        await fetch(`http://127.0.0.1:8000/api/alerts/${alertId}/assign`, {
+                        await fetch(`${API_URL}/api/alerts/${alertId}/assign`, {
                           method: 'POST',
                           headers: {
                             'Content-Type': 'application/json',

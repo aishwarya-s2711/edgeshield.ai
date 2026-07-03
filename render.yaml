@@ -10,13 +10,3 @@ services:
         value: "8000"
       - key: JWT_SECRET
         value: "generate_a_secure_random_key_here"
-
-  - type: web
-    name: edgeshield-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    publishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        value: "https://edgeshield-backend.onrender.com"
