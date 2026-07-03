@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import machineThumb from '../assets/machine_thumb.png';
 import aiAvatar from '../assets/ai_avatar.png';
+import rotaryCompressorImg from '../assets/rotary_compressor.png';
+import spindleMotorImg from '../assets/spindle_motor.png';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   AreaChart, Area, BarChart, Bar, RadialBarChart, RadialBar, ComposedChart
@@ -57,6 +59,14 @@ const INITIAL_SESSIONS = [
 ];
 
 export const Dashboard = () => {
+  const getMachineImage = (machineName) => {
+    if (!machineName) return machineThumb;
+    const name = machineName.toLowerCase();
+    if (name.includes('rotary')) return rotaryCompressorImg;
+    if (name.includes('spindle')) return spindleMotorImg;
+    return machineThumb;
+  };
+
   const { user, token, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -2126,7 +2136,7 @@ export const Dashboard = () => {
                       <div key={machine.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1"><img src={machineThumb} alt="Machine" className="w-full h-full object-contain" /></div>
+                            <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1"><img src={getMachineImage(machine.name)} alt="Machine" className="w-full h-full object-contain" /></div>
                             <div>
                               <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 leading-tight">{machine.name}</h4>
                               <span className="text-xs md:text-[10px] text-gray-500 font-bold uppercase tracking-wide">{machine.id} · {machine.type}</span>
@@ -2626,7 +2636,7 @@ export const Dashboard = () => {
       <div className="flex justify-between items-start">
         <div className="flex gap-3 items-center">
           <div className="w-12 h-12 rounded-lg bg-slate-50 border border-gray-100 flex-shrink-0 shadow-sm p-1">
-            <img src={machineThumb} alt="Machine" className="w-full h-full object-contain" />
+            <img src={getMachineImage(alt.machine)} alt="Machine" className="w-full h-full object-contain" />
           </div>
           <div>
             <h4 className="font-extrabold text-gray-900 text-base">{alt.machine}</h4>
