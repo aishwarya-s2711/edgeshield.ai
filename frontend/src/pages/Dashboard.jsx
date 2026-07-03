@@ -1259,7 +1259,7 @@ export const Dashboard = () => {
     const parts = text.split(/\*\*([^*]+)\*\*/g);
     return parts.map((part, index) => {
       if (index % 2 === 1) {
-        return <strong key={index} className="font-extrabold text-dark-900">{part}</strong>;
+        return <strong key={index} className="font-extrabold text-gray-900">{part}</strong>;
       }
       return part;
     });
@@ -1273,20 +1273,20 @@ export const Dashboard = () => {
         const m = machines.find(item => item.id === data.id) || data;
         const statusColor = m.status === 'Critical' ? 'text-red-600 bg-red-50 border border-red-200' : m.status === 'Warning' ? 'text-amber-600 bg-amber-50 border border-amber-200' : 'text-emerald-650 bg-emerald-50 border border-emerald-200';
         return (
-          <div className="mt-3 p-4 bg-dark-50/50 border border-dark-200 rounded-xl space-y-3 text-dark-800 font-sans shadow-sm backdrop-blur-sm">
-            <div className="flex justify-between items-center border-b border-dark-150 pb-2">
-              <span className="font-extrabold text-base md:text-sm md:text-xs text-dark-900">{m.name} ({m.id})</span>
+          <div className="mt-3 p-4 bg-white/50 border border-gray-200 rounded-xl space-y-3 text-gray-800 font-sans shadow-sm backdrop-blur-sm">
+            <div className="flex justify-between items-center border-b border-gray-200 pb-2">
+              <span className="font-extrabold text-base md:text-sm md:text-xs text-gray-900">{m.name} ({m.id})</span>
               <span className={`text-xs md:text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${statusColor}`}>{m.status}</span>
             </div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs md:text-[10.5px] font-semibold text-dark-700">
-              <div className="flex justify-between"><span>Health Index:</span> <span className="font-bold text-dark-900">{m.health}%</span></div>
-              <div className="flex justify-between"><span>RUL Remaining:</span> <span className="font-bold text-dark-900">{m.rul} hrs</span></div>
-              <div className="flex justify-between"><span>Temperature:</span> <span className="font-bold text-dark-900">{m.temp}°C</span></div>
-              <div className="flex justify-between"><span>Vibration Amplitude:</span> <span className="font-bold text-dark-900">{m.vibration} g</span></div>
-              <div className="flex justify-between"><span>Current Draw:</span> <span className="font-bold text-dark-900">{m.current} A</span></div>
-              <div className="flex justify-between"><span>RPM Speed:</span> <span className="font-bold text-dark-900">{m.rpm} RPM</span></div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs md:text-[10.5px] font-semibold text-gray-700">
+              <div className="flex justify-between"><span>Health Index:</span> <span className="font-bold text-gray-900">{m.health}%</span></div>
+              <div className="flex justify-between"><span>RUL Remaining:</span> <span className="font-bold text-gray-900">{m.rul} hrs</span></div>
+              <div className="flex justify-between"><span>Temperature:</span> <span className="font-bold text-gray-900">{m.temp}°C</span></div>
+              <div className="flex justify-between"><span>Vibration Amplitude:</span> <span className="font-bold text-gray-900">{m.vibration} g</span></div>
+              <div className="flex justify-between"><span>Current Draw:</span> <span className="font-bold text-gray-900">{m.current} A</span></div>
+              <div className="flex justify-between"><span>RPM Speed:</span> <span className="font-bold text-gray-900">{m.rpm} RPM</span></div>
             </div>
-            <div className="flex gap-2 pt-2 border-t border-dark-150">
+            <div className="flex gap-2 pt-2 border-t border-gray-200">
               <button 
                 onClick={() => {
                   triggerToast('AI Diagnostic', `Running spectral telemetry audit on ${m.id}...`, 'info');
@@ -1300,7 +1300,7 @@ export const Dashboard = () => {
               </button>
               <button 
                 onClick={() => triggerToast('Maintenance Ticket Logged', `Diagnostic work order dispatched for ${m.id}.`, 'info')}
-                className="flex-1 py-1.5 border border-dark-200 hover:bg-dark-50 text-dark-850 rounded-lg text-xs md:text-[10px] font-extrabold transition-colors"
+                className="flex-1 py-1.5 border border-gray-200 hover:bg-white text-dark-850 rounded-lg text-xs md:text-[10px] font-extrabold transition-colors"
               >
                 Dispatch Work Order
               </button>
@@ -1312,18 +1312,18 @@ export const Dashboard = () => {
         const d = cyberDevices.find(item => item.id === data.id) || data;
         const isQuarantined = d.status === 'Quarantined';
         return (
-          <div className="mt-3 p-4 bg-dark-50/50 border border-dark-200 rounded-xl space-y-3 text-dark-800 font-sans shadow-sm backdrop-blur-sm">
-            <div className="flex justify-between items-center border-b border-dark-150 pb-2">
-              <span className="font-extrabold text-base md:text-sm md:text-xs text-dark-900">{d.name} ({d.id})</span>
+          <div className="mt-3 p-4 bg-white/50 border border-gray-200 rounded-xl space-y-3 text-gray-800 font-sans shadow-sm backdrop-blur-sm">
+            <div className="flex justify-between items-center border-b border-gray-200 pb-2">
+              <span className="font-extrabold text-base md:text-sm md:text-xs text-gray-900">{d.name} ({d.id})</span>
               <span className={`text-xs md:text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${isQuarantined ? 'text-red-600 bg-red-50 border border-red-200' : 'text-emerald-650 bg-emerald-50 border border-emerald-200'}`}>{d.status}</span>
             </div>
-            <div className="text-xs md:text-[10.5px] font-semibold text-dark-700 space-y-1.5">
-              <div className="flex justify-between"><span>IP Address:</span> <span className="font-mono text-dark-900">{d.ip}</span></div>
-              <div className="flex justify-between"><span>MAC Address:</span> <span className="font-mono text-dark-900">{d.mac}</span></div>
-              <div className="flex justify-between"><span>Network Trust score:</span> <span className="font-bold text-dark-900">{d.trustScore}%</span></div>
+            <div className="text-xs md:text-[10.5px] font-semibold text-gray-700 space-y-1.5">
+              <div className="flex justify-between"><span>IP Address:</span> <span className="font-mono text-gray-900">{d.ip}</span></div>
+              <div className="flex justify-between"><span>MAC Address:</span> <span className="font-mono text-gray-900">{d.mac}</span></div>
+              <div className="flex justify-between"><span>Network Trust score:</span> <span className="font-bold text-gray-900">{d.trustScore}%</span></div>
               <div className="flex justify-between"><span>Risk Classification:</span> <span className={`font-bold ${d.riskLevel === 'Critical' ? 'text-red-650' : 'text-emerald-650'}`}>{d.riskLevel}</span></div>
             </div>
-            <div className="flex gap-2 pt-2 border-t border-dark-150">
+            <div className="flex gap-2 pt-2 border-t border-gray-200">
               <button 
                 onClick={() => toggleDeviceQuarantine(d.id)}
                 className={`flex-1 py-1.5 rounded-lg text-xs md:text-[10px] font-extrabold text-white transition-colors shadow-sm ${isQuarantined ? 'bg-emerald-650 hover:bg-emerald-750' : 'bg-red-600 hover:bg-red-700'}`}
@@ -1332,7 +1332,7 @@ export const Dashboard = () => {
               </button>
               <button 
                 onClick={() => whitelistDevice(d.id)}
-                className="flex-1 py-1.5 border border-dark-200 hover:bg-dark-50 text-dark-850 rounded-lg text-xs md:text-[10px] font-extrabold transition-colors"
+                className="flex-1 py-1.5 border border-gray-200 hover:bg-white text-dark-850 rounded-lg text-xs md:text-[10px] font-extrabold transition-colors"
               >
                 Whitelist Signature
               </button>
@@ -1344,22 +1344,22 @@ export const Dashboard = () => {
         const a = alerts.find(item => item.id === data.id) || data;
         const isResolved = a.status === 'Resolved';
         return (
-          <div className="mt-3 p-4 bg-dark-50/50 border border-dark-200 rounded-xl space-y-3.5 text-dark-800 font-sans shadow-sm backdrop-blur-sm">
-            <div className="flex justify-between items-center border-b border-dark-150 pb-2">
-              <span className="font-extrabold text-base md:text-sm md:text-xs text-dark-900">{a.id} — {a.type}</span>
-              <span className={`text-xs md:text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${a.priority === 'Critical' ? 'text-white bg-red-600' : 'text-dark-800 bg-amber-400'}`}>{a.priority} Priority</span>
+          <div className="mt-3 p-4 bg-white/50 border border-gray-200 rounded-xl space-y-3.5 text-gray-800 font-sans shadow-sm backdrop-blur-sm">
+            <div className="flex justify-between items-center border-b border-gray-200 pb-2">
+              <span className="font-extrabold text-base md:text-sm md:text-xs text-gray-900">{a.id} — {a.type}</span>
+              <span className={`text-xs md:text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${a.priority === 'Critical' ? 'text-white bg-red-600' : 'text-gray-800 bg-amber-400'}`}>{a.priority} Priority</span>
             </div>
             <div className="space-y-1.5">
               <p className="text-xs md:text-[11px] font-bold text-dark-950 leading-relaxed">"{a.summary}"</p>
-              <div className="grid grid-cols-2 gap-x-2 text-xs md:text-[10px] font-semibold text-gray-text">
-                <div>Asset: <span className="text-dark-800 font-bold">{a.machine}</span></div>
-                <div>Created: <span className="text-dark-800 font-bold">{a.timestamp}</span></div>
-                <div>Owner: <span className="text-dark-800 font-bold">{a.assignedTo || 'Unassigned'}</span></div>
-                <div>Status: <span className="text-dark-800 font-bold">{a.status}</span></div>
+              <div className="grid grid-cols-2 gap-x-2 text-xs md:text-[10px] font-semibold text-gray-500">
+                <div>Asset: <span className="text-gray-800 font-bold">{a.machine}</span></div>
+                <div>Created: <span className="text-gray-800 font-bold">{a.timestamp}</span></div>
+                <div>Owner: <span className="text-gray-800 font-bold">{a.assignedTo || 'Unassigned'}</span></div>
+                <div>Status: <span className="text-gray-800 font-bold">{a.status}</span></div>
               </div>
             </div>
             {!isResolved && (
-              <div className="flex gap-2 pt-2 border-t border-dark-150">
+              <div className="flex gap-2 pt-2 border-t border-gray-200">
                 {a.status !== 'Acknowledged' && (
                   <button 
                     onClick={() => updateAlertStatus(a.id, 'Acknowledged')}
@@ -1376,7 +1376,7 @@ export const Dashboard = () => {
                 </button>
                 <button 
                   onClick={() => assignAlert(a.id, user?.name || 'Operator')}
-                  className="flex-1 py-1.5 border border-dark-200 hover:bg-dark-50 text-dark-850 rounded-lg text-xs md:text-[10px] font-extrabold transition-colors"
+                  className="flex-1 py-1.5 border border-gray-200 hover:bg-white text-dark-850 rounded-lg text-xs md:text-[10px] font-extrabold transition-colors"
                 >
                   Assign to Me
                 </button>
@@ -1387,11 +1387,11 @@ export const Dashboard = () => {
       }
       case 'settings': {
         return (
-          <div className="mt-3 p-4 bg-dark-50/50 border border-dark-200 rounded-xl space-y-4 text-dark-800 font-sans shadow-sm backdrop-blur-sm">
-            <span className="font-extrabold text-base md:text-sm md:text-xs text-dark-900 border-b border-dark-150 pb-2 block">AI System Threshold Panel</span>
+          <div className="mt-3 p-4 bg-white/50 border border-gray-200 rounded-xl space-y-4 text-gray-800 font-sans shadow-sm backdrop-blur-sm">
+            <span className="font-extrabold text-base md:text-sm md:text-xs text-gray-900 border-b border-gray-200 pb-2 block">AI System Threshold Panel</span>
             <div className="space-y-3.5">
               <div>
-                <div className="flex justify-between text-xs md:text-[10px] mb-1 font-bold text-dark-800 uppercase tracking-wide">
+                <div className="flex justify-between text-xs md:text-[10px] mb-1 font-bold text-gray-800 uppercase tracking-wide">
                   <span>Warning Threshold</span>
                   <span className="font-mono text-primary-600">{healthWarnThreshold}%</span>
                 </div>
@@ -1403,7 +1403,7 @@ export const Dashboard = () => {
                 />
               </div>
               <div>
-                <div className="flex justify-between text-xs md:text-[10px] mb-1 font-bold text-dark-800 uppercase tracking-wide">
+                <div className="flex justify-between text-xs md:text-[10px] mb-1 font-bold text-gray-800 uppercase tracking-wide">
                   <span>Critical Threshold</span>
                   <span className="font-mono text-red-600">{healthCritThreshold}%</span>
                 </div>
@@ -1415,7 +1415,7 @@ export const Dashboard = () => {
                 />
               </div>
             </div>
-            <div className="pt-2 border-t border-dark-150">
+            <div className="pt-2 border-t border-gray-200">
               <button 
                 onClick={() => triggerToast('System Config', 'AI Alert limits saved to edge firmware.', 'success')}
                 className="w-full py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-xs md:text-[10.5px] font-extrabold transition-colors shadow-sm"
@@ -1437,9 +1437,9 @@ export const Dashboard = () => {
         }));
 
         return (
-          <div className="mt-3 p-4 bg-dark-50/50 border border-dark-200 rounded-xl space-y-3.5 text-dark-800 font-sans shadow-sm w-full min-w-[280px]">
-            <div className="flex justify-between items-center border-b border-dark-150 pb-2">
-              <span className="font-extrabold text-xs md:text-[10px] uppercase tracking-wider text-gray-text">{m.name} ({m.id})</span>
+          <div className="mt-3 p-4 bg-white/50 border border-gray-200 rounded-xl space-y-3.5 text-gray-800 font-sans shadow-sm w-full min-w-[280px]">
+            <div className="flex justify-between items-center border-b border-gray-200 pb-2">
+              <span className="font-extrabold text-xs md:text-[10px] uppercase tracking-wider text-gray-500">{m.name} ({m.id})</span>
               <span className="text-xs md:text-[9px] font-extrabold text-primary-600 uppercase tracking-wider bg-primary-50 px-2 py-0.5 rounded-full border border-primary-200">Real-time {param}</span>
             </div>
             <div className="h-32 w-full font-mono text-xs md:text-[9px] relative select-none">
@@ -1681,10 +1681,10 @@ export const Dashboard = () => {
   const getUserStatusBadge = (status) => {
     switch (status) {
       case 'Active': return 'bg-emerald-50 text-emerald-600 border-emerald-200';
-      case 'Inactive': return 'bg-dark-100 text-gray-text border-dark-200';
+      case 'Inactive': return 'bg-dark-100 text-gray-500 border-gray-200';
       case 'Suspended': return 'bg-red-50 text-red-600 border-red-200';
       case 'Pending': return 'bg-orange-50 text-orange-600 border-orange-205';
-      default: return 'bg-dark-50 text-dark-700 border-dark-200';
+      default: return 'bg-white text-gray-700 border-gray-200';
     }
   };
 
@@ -1707,24 +1707,24 @@ export const Dashboard = () => {
   const isAuthorized = allowedTabs.includes(activeTab);
 
   return (
-    <div className="min-h-screen bg-dark-50 text-dark-900 flex font-sans overflow-hidden">
+    <div className="min-h-screen bg-white text-gray-900 flex font-sans overflow-hidden">
       
       {/* ─── Collapsible Left Sidebar ─── */}
-      <aside className={`bg-white border-r border-dark-200 flex flex-col justify-between transition-smooth z-35 select-none ${sidebarCollapsed ? 'w-16' : 'w-64'}`}>
+      <aside className={`bg-white border-r border-gray-200 flex flex-col justify-between transition-smooth z-35 select-none ${sidebarCollapsed ? 'w-16' : 'w-64'}`}>
         <div>
           {/* Brand header */}
-          <div className="h-16 border-b border-dark-200 px-4 flex items-center justify-between">
+          <div className="h-16 border-b border-gray-200 px-4 flex items-center justify-between">
             <div className="flex items-center gap-3 overflow-hidden">
               <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center shadow-md flex-shrink-0">
                 <Shield className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
               </div>
               {!sidebarCollapsed && (
-                <span className="font-bold text-base md:text-sm tracking-tight text-dark-900 whitespace-nowrap">
+                <span className="font-bold text-base md:text-sm tracking-tight text-gray-900 whitespace-nowrap">
                   EdgeShield <span className="text-primary-600">AI</span>
                 </span>
               )}
             </div>
-            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="p-1.5 hover:bg-dark-50 rounded-lg text-dark-500 hidden md:block">
+            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="p-1.5 hover:bg-white rounded-lg text-gray-500 hidden md:block">
               <Menu className="w-4 h-4" />
             </button>
           </div>
@@ -1750,7 +1750,7 @@ export const Dashboard = () => {
                   className={`w-full flex items-center gap-3 p-2.5 rounded-xl text-base md:text-sm md:text-xs font-bold transition-smooth ${
                     isActive 
                       ? 'bg-primary-600 text-white shadow-md shadow-primary-600/10' 
-                      : 'text-gray-text hover:bg-primary-50 hover:text-primary-600'
+                      : 'text-gray-500 hover:bg-primary-50 hover:text-primary-600'
                   }`}
                 >
                   <Icon className="w-4.5 h-4.5 flex-shrink-0" />
@@ -1762,7 +1762,7 @@ export const Dashboard = () => {
         </div>
 
         {/* User logout */}
-        <div className="p-3 border-t border-dark-200">
+        <div className="p-3 border-t border-gray-200">
           <button onClick={handleLogout} className="w-full flex items-center gap-3 p-2.5 rounded-xl text-base md:text-sm md:text-xs font-bold text-red-600 hover:bg-red-50 hover:text-red-700 transition-smooth">
             <LogOut className="w-4.5 h-4.5 flex-shrink-0" />
             {!sidebarCollapsed && <span>Logout</span>}
@@ -1774,16 +1774,16 @@ export const Dashboard = () => {
       <div className="flex-1 flex flex-col h-screen overflow-y-auto">
         
         {/* Sticky Header Nav */}
-        <header className="h-16 bg-white border-b border-dark-200 sticky top-0 z-20 px-6 flex items-center justify-between flex-shrink-0 font-sans">
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-20 px-6 flex items-center justify-between flex-shrink-0 font-sans">
           <div>
-            <div className="text-xs md:text-[10px] text-gray-text font-semibold flex items-center gap-1 mb-0.5 select-none">
+            <div className="text-xs md:text-[10px] text-gray-500 font-semibold flex items-center gap-1 mb-0.5 select-none">
               <span>Detroit Smart Assembly</span>
               <ChevronRight className="w-2.5 h-2.5" />
               <span>Operations</span>
               <ChevronRight className="w-2.5 h-2.5" />
               <span className="text-primary-600 font-bold">{activeTab}</span>
             </div>
-            <h1 className="text-base md:text-sm font-extrabold text-dark-900 tracking-tight flex items-center gap-2">
+            <h1 className="text-base md:text-sm font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
               {activeTab === 'Dashboard' ? 'Console Overview' : activeTab}
               <span className="bg-primary-50 text-primary-600 text-xs md:text-[10px] px-2 py-0.5 rounded-md font-bold uppercase tracking-wider">
                 Edge AI
@@ -1808,7 +1808,7 @@ export const Dashboard = () => {
                 navigate('/dashboard/alerts'); 
                 setAlViewMode('list'); 
               }}
-              className="p-2 border border-dark-200 rounded-xl hover:bg-dark-50 text-dark-600 relative transition-colors"
+              className="p-2 border border-gray-200 rounded-xl hover:bg-white text-gray-600 relative transition-colors"
               title="Alerts Center"
             >
               {alerts.filter(a => a.status === 'Open' || a.status === 'New').length > 0 && (
@@ -1818,7 +1818,7 @@ export const Dashboard = () => {
             </button>
             <button 
               onClick={() => setHelpPanelOpen(true)}
-              className="p-2 border border-dark-200 rounded-xl hover:bg-primary-50 hover:border-primary-300 hover:text-primary-600 text-dark-600 transition-colors"
+              className="p-2 border border-gray-200 rounded-xl hover:bg-primary-50 hover:border-primary-300 hover:text-primary-600 text-gray-600 transition-colors"
               title="Help & Documentation"
             >
               <HelpCircle className="w-4 h-4" />
@@ -1828,11 +1828,11 @@ export const Dashboard = () => {
             <div className="relative">
               <button 
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center gap-3 hover:bg-dark-50 p-1 rounded-xl transition-colors cursor-pointer"
+                className="flex items-center gap-3 hover:bg-white p-1 rounded-xl transition-colors cursor-pointer"
               >
                 <div className="hidden lg:flex flex-col text-right">
-                  <span className="text-base md:text-sm md:text-xs font-bold text-dark-900">{user?.name || 'Operator'}</span>
-                  <span className="text-xs md:text-[9px] text-gray-text font-bold uppercase tracking-wider">{user?.role || 'Lead Engineer'}</span>
+                  <span className="text-base md:text-sm md:text-xs font-bold text-gray-900">{user?.name || 'Operator'}</span>
+                  <span className="text-xs md:text-[9px] text-gray-500 font-bold uppercase tracking-wider">{user?.role || 'Lead Engineer'}</span>
                 </div>
                 <div className="w-9 h-9 rounded-xl bg-primary-50 border border-primary-200 text-primary-600 flex items-center justify-center font-bold text-base md:text-sm md:text-xs flex-shrink-0">
                   {user?.name ? user.name.slice(0,2).toUpperCase() : 'OP'}
@@ -1848,27 +1848,27 @@ export const Dashboard = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2 w-56 bg-white border border-dark-200 rounded-2xl shadow-xl z-50 p-3.5 space-y-3 font-sans"
+                      className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 p-3.5 space-y-3 font-sans"
                     >
-                      <div className="border-b border-dark-100 pb-3">
-                        <div className="text-base md:text-sm md:text-xs font-extrabold text-dark-900">{user?.name || 'Operator Profile'}</div>
-                        <div className="text-xs md:text-[10px] text-gray-text font-semibold">{user?.email}</div>
+                      <div className="border-b border-gray-100 pb-3">
+                        <div className="text-base md:text-sm md:text-xs font-extrabold text-gray-900">{user?.name || 'Operator Profile'}</div>
+                        <div className="text-xs md:text-[10px] text-gray-500 font-semibold">{user?.email}</div>
                         <div className="mt-1.5 flex gap-1.5 flex-wrap">
                           <span className="bg-primary-50 text-primary-600 text-[8px] px-1.5 py-0.5 rounded font-extrabold uppercase border border-primary-200">{user?.role}</span>
-                          <span className="bg-dark-50 text-gray-text text-[8px] px-1.5 py-0.5 rounded font-extrabold uppercase border border-dark-200">{user?.dept || 'Maintenance'}</span>
+                          <span className="bg-white text-gray-500 text-[8px] px-1.5 py-0.5 rounded font-extrabold uppercase border border-gray-200">{user?.dept || 'Maintenance'}</span>
                         </div>
                       </div>
 
                       <div className="space-y-1">
                         <button 
                           onClick={() => { navigate('/dashboard/settings'); setSettingsActiveMenu('general'); setProfileDropdownOpen(false); }}
-                          className="w-full text-left py-1.5 px-2.5 hover:bg-dark-50 rounded-lg text-base md:text-sm md:text-xs font-bold text-dark-800 transition-colors"
+                          className="w-full text-left py-1.5 px-2.5 hover:bg-white rounded-lg text-base md:text-sm md:text-xs font-bold text-gray-800 transition-colors"
                         >
                           System Config
                         </button>
                         <button 
                           onClick={() => { navigate('/dashboard/user-management'); setProfileDropdownOpen(false); }}
-                          className="w-full text-left py-1.5 px-2.5 hover:bg-dark-50 rounded-lg text-base md:text-sm md:text-xs font-bold text-dark-800 transition-colors"
+                          className="w-full text-left py-1.5 px-2.5 hover:bg-white rounded-lg text-base md:text-sm md:text-xs font-bold text-gray-800 transition-colors"
                         >
                           Access Matrix (RBAC)
                         </button>
@@ -1876,7 +1876,7 @@ export const Dashboard = () => {
 
                       <button 
                         onClick={() => { setProfileDropdownOpen(false); handleLogout(); }}
-                        className="w-full flex items-center gap-2 py-2 px-2.5 hover:bg-red-50 text-red-650 hover:text-red-755 text-base md:text-sm md:text-xs font-bold rounded-lg transition-colors border-t border-dark-100 pt-3"
+                        className="w-full flex items-center gap-2 py-2 px-2.5 hover:bg-red-50 text-red-650 hover:text-red-755 text-base md:text-sm md:text-xs font-bold rounded-lg transition-colors border-t border-gray-100 pt-3"
                       >
                         <LogOut className="w-4 h-4" />
                         <span>Sign Out Session</span>
@@ -1932,16 +1932,16 @@ export const Dashboard = () => {
         </AnimatePresence>
 
         {/* ─── Tab Content Workspace Body ─── */}
-        <main className="flex-1 p-6 space-y-6 overflow-y-auto bg-dark-50/50">
+        <main className="flex-1 p-6 space-y-6 overflow-y-auto bg-white/50">
 
           {!isAuthorized ? (
-            <div className="min-h-[400px] flex flex-col items-center justify-center text-center space-y-4 font-sans bg-white border border-dark-200 rounded-3xl p-8 shadow-sm">
+            <div className="min-h-[400px] flex flex-col items-center justify-center text-center space-y-4 font-sans bg-white border border-gray-200 rounded-3xl p-8 shadow-sm">
               <div className="w-16 h-16 rounded-full bg-red-50 border border-red-200 text-red-650 flex items-center justify-center shadow-sm">
                 <ShieldAlert className="w-8 h-8" />
               </div>
               <div className="space-y-1">
-                <h2 className="text-base font-extrabold text-dark-900">403 Access Denied</h2>
-                <p className="text-base md:text-sm md:text-xs text-gray-text">You do not have administrative clearance to access the {activeTab} console.</p>
+                <h2 className="text-base font-extrabold text-gray-900">403 Access Denied</h2>
+                <p className="text-base md:text-sm md:text-xs text-gray-500">You do not have administrative clearance to access the {activeTab} console.</p>
               </div>
               <button
                 onClick={() => {
@@ -1969,25 +1969,25 @@ export const Dashboard = () => {
               {/* Primary KPI Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide">Factory Health</span>
+                    <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Factory Health</span>
                     <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"><Activity className="w-4 h-4" /></div>
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-extrabold text-dark-900">{factoryHealth}</span>
+                    <span className="text-2xl font-extrabold text-gray-900">{factoryHealth}</span>
                     <span className="text-emerald-500 text-xs md:text-[10px] font-bold flex items-center gap-0.5"><TrendingUp className="w-3.5 h-3.5" /> Nominal</span>
                   </div>
-                  <div className="text-xs md:text-[10px] text-gray-text font-semibold">Continuous LSTM Health Index</div>
+                  <div className="text-xs md:text-[10px] text-gray-500 font-semibold">Continuous LSTM Health Index</div>
                 </div>
 
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide">Active Node Assets</span>
+                    <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Active Node Assets</span>
                     <div className="w-7 h-7 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><Cpu className="w-4 h-4" /></div>
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-extrabold text-dark-900">{machines.length} Total</span>
+                    <span className="text-2xl font-extrabold text-gray-900">{machines.length} Total</span>
                     <span className={`${
                       machines.filter(m => m.status === 'Critical').length > 0 ? 'text-red-500' :
                       machines.filter(m => m.status === 'Warning').length > 0 ? 'text-orange-500' :
@@ -1996,46 +1996,46 @@ export const Dashboard = () => {
                       {activeAssetsAlert}
                     </span>
                   </div>
-                  <div className="text-xs md:text-[10px] text-gray-text font-semibold">Device buses active on Modbus</div>
+                  <div className="text-xs md:text-[10px] text-gray-500 font-semibold">Device buses active on Modbus</div>
                 </div>
 
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide">AI Security Score</span>
+                    <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">AI Security Score</span>
                     <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"><Shield className="w-4 h-4" /></div>
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-extrabold text-dark-900">{securityScore}</span>
+                    <span className="text-2xl font-extrabold text-gray-900">{securityScore}</span>
                     <span className="text-emerald-500 text-xs md:text-[10px] font-bold flex items-center gap-0.5"><Check className="w-3.5 h-3.5" /> Secure</span>
                   </div>
-                  <div className="text-xs md:text-[10px] text-gray-text font-semibold">{activeCyberAlertsCount} active threat anomalies</div>
+                  <div className="text-xs md:text-[10px] text-gray-500 font-semibold">{activeCyberAlertsCount} active threat anomalies</div>
                 </div>
 
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-smooth">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide">Energy Load Kw</span>
+                    <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Energy Load Kw</span>
                     <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center"><Zap className="w-4 h-4" /></div>
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-extrabold text-dark-900">{energyLoad} kW</span>
+                    <span className="text-2xl font-extrabold text-gray-900">{energyLoad} kW</span>
                     <span className="text-emerald-500 text-xs md:text-[10px] font-bold flex items-center gap-0.5">-12.5%</span>
                   </div>
-                  <div className="text-xs md:text-[10px] text-gray-text font-semibold">Optimized via load forecast models</div>
+                  <div className="text-xs md:text-[10px] text-gray-500 font-semibold">Optimized via load forecast models</div>
                 </div>
               </div>
 
               {/* ─── EDGE AI STATUS & DIAGNOSTICS PANEL ─── */}
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-dark-150 pb-3">
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-gray-200 pb-3">
                   <div>
-                    <h3 className="text-base md:text-sm font-bold text-dark-900 flex items-center gap-2">
+                    <h3 className="text-base md:text-sm font-bold text-gray-900 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
                       Local Edge AI Processing Status
                     </h3>
-                    <p className="text-xs md:text-[10px] text-gray-text mt-0.5">Real-time status of the local air-gapped diagnostics engine</p>
+                    <p className="text-xs md:text-[10px] text-gray-500 mt-0.5">Real-time status of the local air-gapped diagnostics engine</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs md:text-[10px] bg-dark-50 border border-dark-200 text-dark-800 px-2 py-0.5 rounded font-mono">
+                    <span className="text-xs md:text-[10px] bg-white border border-gray-200 text-gray-800 px-2 py-0.5 rounded font-mono">
                       v{edgeStatus?.version || '2.1.0'}
                     </span>
                     <span className="text-xs md:text-[10px] bg-primary-50 border border-primary-200 text-primary-700 px-2 py-0.5 rounded font-bold uppercase tracking-wide">
@@ -2046,35 +2046,35 @@ export const Dashboard = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
                   <div className="space-y-1">
-                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-text tracking-wider">AI Diagnostics</span>
+                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-500 tracking-wider">AI Diagnostics</span>
                     <div className="text-base md:text-sm md:text-xs font-bold text-emerald-600 flex items-center gap-1.5">
                       <span>●</span> Local Processing (No Cloud)
                     </div>
                   </div>
                   
                   <div className="space-y-1">
-                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-text tracking-wider">Database Status</span>
+                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-500 tracking-wider">Database Status</span>
                     <div className="text-base md:text-sm md:text-xs font-bold text-dark-850 flex items-center gap-1.5">
                       <span>●</span> SQLite / Flat JSON Connected
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-text tracking-wider">Uptime</span>
+                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-500 tracking-wider">Uptime</span>
                     <div className="text-base md:text-sm md:text-xs font-bold text-dark-850 font-mono">
                       {edgeStatus?.uptime ? `${Math.floor(edgeStatus.uptime / 60)}m ${edgeStatus.uptime % 60}s` : 'Offline'}
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-text tracking-wider">WebSocket Clients</span>
+                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-500 tracking-wider">WebSocket Clients</span>
                     <div className="text-base md:text-sm md:text-xs font-bold text-dark-850 font-mono">
                       {edgeStatus?.wsClients || 1} Connected
                     </div>
                   </div>
 
                   <div className="space-y-1 col-span-2 md:col-span-1">
-                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-text tracking-wider">Network Mode</span>
+                    <span className="text-xs md:text-[9px] uppercase font-extrabold text-gray-500 tracking-wider">Network Mode</span>
                     <div className="text-base md:text-sm md:text-xs font-bold text-dark-850 flex items-center gap-1.5">
                       <span>●</span> {isBackendConnected ? 'Direct Connection' : 'Air-Gapped Client Cache'}
                     </div>
@@ -2083,8 +2083,8 @@ export const Dashboard = () => {
               </div>
 
               {/* ─── AI INSIGHTS QUICK SNAPSHOT SECTION ─── */}
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 flex items-center gap-1.5">
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-primary-500" />
                   Local AI Diagnostics Insights
                 </h4>
@@ -2097,8 +2097,8 @@ export const Dashboard = () => {
                     <span className="text-xs md:text-[9px] uppercase tracking-wider text-amber-700 font-extrabold block">Recommended Action today</span>
                     <span className="font-bold text-amber-950 block text-base md:text-sm md:text-xs">Inspect bearing on MC-108 within 2.5 Hours</span>
                   </div>
-                  <div className="p-3 border border-dark-100 bg-dark-50/20 rounded-xl space-y-1">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Predictive Diagnostics Model</span>
+                  <div className="p-3 border border-gray-100 bg-white/20 rounded-xl space-y-1">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Predictive Diagnostics Model</span>
                     <span className="font-bold block text-base md:text-sm md:text-xs text-primary-700">LSTM / Spectral Anomaly Ready</span>
                   </div>
                 </div>
@@ -2106,8 +2106,8 @@ export const Dashboard = () => {
 
               {/* Composed Chart area */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                  <h3 className="text-base md:text-sm font-bold text-dark-900">Detroit Hub #4 Operations Composed Chart</h3>
+                <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                  <h3 className="text-base md:text-sm font-bold text-gray-900">Detroit Hub #4 Operations Composed Chart</h3>
                   <div className="h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={machines}>
@@ -2123,16 +2123,16 @@ export const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                  <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block border-b border-dark-100 pb-2">Active Incidents Summary</span>
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                  <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block border-b border-gray-100 pb-2">Active Incidents Summary</span>
                   <div className="space-y-3.5">
                     {alerts.slice(0, 3).map((a) => (
-                      <div key={a.id} className="p-3 border border-dark-200 rounded-xl space-y-1.5 text-base md:text-sm md:text-xs">
+                      <div key={a.id} className="p-3 border border-gray-200 rounded-xl space-y-1.5 text-base md:text-sm md:text-xs">
                         <div className="flex justify-between font-bold">
-                          <span className="text-dark-900 font-bold">{a.machine}</span>
+                          <span className="text-gray-900 font-bold">{a.machine}</span>
                           <span className="text-xs md:text-[9px] uppercase border px-1.5 rounded bg-red-50 text-red-600 border-red-200">{a.priority}</span>
                         </div>
-                        <div className="text-gray-text text-xs md:text-[10.5px] leading-relaxed">{a.summary}</div>
+                        <div className="text-gray-500 text-xs md:text-[10.5px] leading-relaxed">{a.summary}</div>
                       </div>
                     ))}
                   </div>
@@ -2148,20 +2148,20 @@ export const Dashboard = () => {
                 <div className="space-y-6">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                      <h2 className="text-base font-extrabold text-dark-900 tracking-tight">Machine Monitoring Hub</h2>
-                      <p className="text-base md:text-sm md:text-xs text-gray-text mt-0.5">Real-time parameters synced from edge sensor buses.</p>
+                      <h2 className="text-base font-extrabold text-gray-900 tracking-tight">Machine Monitoring Hub</h2>
+                      <p className="text-base md:text-sm md:text-xs text-gray-500 mt-0.5">Real-time parameters synced from edge sensor buses.</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredMachines.map((machine) => (
-                      <div key={machine.id} className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-smooth">
+                      <div key={machine.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-smooth">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center"><Cpu className="w-5.5 h-5.5" /></div>
                             <div>
-                              <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 leading-tight">{machine.name}</h4>
-                              <span className="text-xs md:text-[10px] text-gray-text font-bold uppercase tracking-wide">{machine.id} · {machine.type}</span>
+                              <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 leading-tight">{machine.name}</h4>
+                              <span className="text-xs md:text-[10px] text-gray-500 font-bold uppercase tracking-wide">{machine.id} · {machine.type}</span>
                             </div>
                           </div>
                           <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs md:text-[9px] font-extrabold uppercase border ${getStatusBadge(machine.status)}`}>
@@ -2169,7 +2169,7 @@ export const Dashboard = () => {
                           </span>
                         </div>
 
-                        <div className="space-y-1.5 text-base md:text-sm md:text-xs text-dark-800 font-semibold grid grid-cols-2 gap-y-2 gap-x-4 border-t border-b border-dark-100 py-3">
+                        <div className="space-y-1.5 text-base md:text-sm md:text-xs text-gray-800 font-semibold grid grid-cols-2 gap-y-2 gap-x-4 border-t border-b border-gray-100 py-3">
                           <div>Temp: <span className="text-dark-950 font-bold">{machine.temp.toFixed(1)}°C</span></div>
                           <div>RPM: <span className="text-dark-950 font-bold">{machine.rpm}</span></div>
                           <div>Vibration: <span className="text-dark-950 font-bold">{machine.vibration.toFixed(2)} g</span></div>
@@ -2178,7 +2178,7 @@ export const Dashboard = () => {
 
                         <button 
                           onClick={() => { setSelectedMachineId(machine.id); setMmViewMode('detail'); }}
-                          className="w-full py-2 bg-dark-50 border border-dark-200 hover:bg-primary-600 hover:text-white rounded-xl text-base md:text-sm md:text-xs font-bold text-dark-800 transition-smooth flex items-center justify-center gap-1.5"
+                          className="w-full py-2 bg-white border border-gray-200 hover:bg-primary-600 hover:text-white rounded-xl text-base md:text-sm md:text-xs font-bold text-gray-800 transition-smooth flex items-center justify-center gap-1.5"
                         >
                           <Eye className="w-4 h-4" /> View Diagnostics
                         </button>
@@ -2188,15 +2188,15 @@ export const Dashboard = () => {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between pb-3 border-b border-dark-200">
-                    <button onClick={() => setMmViewMode('list')} className="border border-dark-200 hover:bg-dark-50 text-dark-800 rounded-xl py-1.5 px-3 flex items-center gap-1.5 text-base md:text-sm md:text-xs font-bold transition-colors">
+                  <div className="flex items-center justify-between pb-3 border-b border-gray-200">
+                    <button onClick={() => setMmViewMode('list')} className="border border-gray-200 hover:bg-white text-gray-800 rounded-xl py-1.5 px-3 flex items-center gap-1.5 text-base md:text-sm md:text-xs font-bold transition-colors">
                       <ChevronLeft className="w-4 h-4" /> Back to Machine Directory
                     </button>
                   </div>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2 bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                      <h3 className="text-base md:text-sm font-bold text-dark-900">Live Telemetry Chart: {selectedMachine.name}</h3>
+                    <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                      <h3 className="text-base md:text-sm font-bold text-gray-900">Live Telemetry Chart: {selectedMachine.name}</h3>
                       <div className="h-64">
                         <ResponsiveContainer width="100%" height="100%">
                           <LineChart data={historyData}>
@@ -2212,9 +2212,9 @@ export const Dashboard = () => {
                       </div>
                     </div>
 
-                    <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                      <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block border-b border-dark-100 pb-2">Asset Details</span>
-                      <div className="space-y-4 pt-2 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                    <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                      <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block border-b border-gray-100 pb-2">Asset Details</span>
+                      <div className="space-y-4 pt-2 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                         <div className="flex justify-between"><span>Location:</span> <span>{selectedMachine.location}</span></div>
                         <div className="flex justify-between"><span>Installer Date:</span> <span>{selectedMachine.installDate}</span></div>
                         <div className="flex justify-between"><span>Operating Department:</span> <span>{selectedMachine.dept}</span></div>
@@ -2232,12 +2232,12 @@ export const Dashboard = () => {
               {pmViewMode === 'list' ? (
                 <div className="space-y-6">
                   {/* Top Dashboard Insights summary area */}
-                  <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                    <div className="border-b border-dark-150 pb-3">
-                      <h2 className="text-base font-extrabold text-dark-900 tracking-tight flex items-center gap-2">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                    <div className="border-b border-gray-200 pb-3">
+                      <h2 className="text-base font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
                         🧠 Edge Explainable AI (XAI) Diagnostics Console
                       </h2>
-                      <p className="text-base md:text-sm md:text-xs text-gray-text mt-0.5">On-device neural forecasting continuously analyzes physical anomalies and explains primary root-causes locally.</p>
+                      <p className="text-base md:text-sm md:text-xs text-gray-500 mt-0.5">On-device neural forecasting continuously analyzes physical anomalies and explains primary root-causes locally.</p>
                     </div>
 
                     {/* AI Insights KPI Quick Info row */}
@@ -2250,24 +2250,24 @@ export const Dashboard = () => {
                         <span className="text-[8.5px] uppercase tracking-wider text-amber-700 font-extrabold block">Highest Probability failure</span>
                         <span className="text-base md:text-sm font-extrabold text-amber-900 block mt-1">Lubrication Issue (42% rise)</span>
                       </div>
-                      <div className="bg-dark-50 p-3 rounded-2xl border border-dark-100">
-                        <span className="text-[8.5px] uppercase tracking-wider text-gray-text font-extrabold block">AI Analysis Engine</span>
+                      <div className="bg-white p-3 rounded-2xl border border-gray-100">
+                        <span className="text-[8.5px] uppercase tracking-wider text-gray-500 font-extrabold block">AI Analysis Engine</span>
                         <span className="text-base md:text-sm font-extrabold block mt-1 flex items-center gap-1">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> TFLite/ONNX Ready
                         </span>
                       </div>
-                      <div className="bg-dark-50 p-3 rounded-2xl border border-dark-100">
-                        <span className="text-[8.5px] uppercase tracking-wider text-gray-text font-extrabold block">Estimated Downtime Saving</span>
+                      <div className="bg-white p-3 rounded-2xl border border-gray-100">
+                        <span className="text-[8.5px] uppercase tracking-wider text-gray-500 font-extrabold block">Estimated Downtime Saving</span>
                         <span className="text-base md:text-sm font-extrabold block mt-1 text-primary-700">~12.4 Hours / Node</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-base md:text-sm md:text-xs">
                         <thead>
-                          <tr className="border-b border-dark-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-text bg-dark-50/50">
+                          <tr className="border-b border-gray-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-white/50">
                             <th className="py-3 px-3">Asset</th>
                             <th className="py-3 px-3">Predicted Failure Class</th>
                             <th className="py-3 px-3">Failure Prob</th>
@@ -2276,7 +2276,7 @@ export const Dashboard = () => {
                             <th className="py-3 px-3 text-right">Actions</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-dark-100 font-semibold text-dark-800">
+                        <tbody className="divide-y divide-dark-100 font-semibold text-gray-800">
                           {machines.map((m) => {
                             // Assign mock failure classes dynamically for preview
                             const mockFailureType = m.id === 'MC-108' ? 'Bearing Failure' : m.id === 'MC-104' ? 'Lubrication Issue' : m.id === 'MC-106' ? 'Pressure Leak' : 'Nominal';
@@ -2284,8 +2284,8 @@ export const Dashboard = () => {
                             const probColor = (m.failureProbability ?? m.failure_prob ?? 0.0) > 15 ? 'text-red-500 font-bold animate-pulse' : 'text-emerald-600';
                             
                             return (
-                              <tr key={m.id} className="hover:bg-dark-50/50 transition-colors">
-                                <td className="py-3 px-3 font-bold text-dark-900">{m.name}</td>
+                              <tr key={m.id} className="hover:bg-white/50 transition-colors">
+                                <td className="py-3 px-3 font-bold text-gray-900">{m.name}</td>
                                 <td className="py-3 px-3">
                                   <span className={`px-2 py-0.5 rounded text-xs md:text-[10px] font-bold ${mockFailureType !== 'Nominal' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-emerald-50 text-emerald-700'}`}>
                                     {mockFailureType}
@@ -2321,17 +2321,17 @@ export const Dashboard = () => {
 
                 return (
                   <div className="space-y-6">
-                    <div className="flex items-center justify-between pb-3 border-b border-dark-200 bg-white border rounded-2xl p-4 shadow-sm">
-                      <button onClick={() => setPmViewMode('list')} className="border border-dark-200 hover:bg-dark-50 text-dark-800 rounded-xl py-1.5 px-3 flex items-center gap-1.5 text-base md:text-sm md:text-xs font-bold transition-smooth">
+                    <div className="flex items-center justify-between pb-3 border-b border-gray-200 bg-white border rounded-2xl p-4 shadow-sm">
+                      <button onClick={() => setPmViewMode('list')} className="border border-gray-200 hover:bg-white text-gray-800 rounded-xl py-1.5 px-3 flex items-center gap-1.5 text-base md:text-sm md:text-xs font-bold transition-smooth">
                         <ChevronLeft className="w-4 h-4" /> Back to Anomaly Listing
                       </button>
-                      <span className="text-xs md:text-[10px] font-mono text-gray-text">Virtual twin telemetry streaming: Active</span>
+                      <span className="text-xs md:text-[10px] font-mono text-gray-500">Virtual twin telemetry streaming: Active</span>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                       {/* Left: Health and Failure trends chart */}
-                      <div className="lg:col-span-2 bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                        <h3 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 flex items-center gap-1.5">
+                      <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                        <h3 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-1.5">
                           <Activity className="w-4 h-4 text-primary-500" />
                           Health Score &amp; Anomaly Probability Trend Forecasts
                         </h3>
@@ -2354,9 +2354,9 @@ export const Dashboard = () => {
                       </div>
 
                       {/* Right: Explainable AI console card */}
-                      <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
+                      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-6 flex flex-col justify-between">
                         <div className="space-y-4">
-                          <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 flex items-center gap-1.5">
+                          <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-1.5">
                             <Sparkles className="w-4 h-4 text-primary-500" />
                             Explainable AI (XAI) Insight
                           </h4>
@@ -2365,7 +2365,7 @@ export const Dashboard = () => {
                           </div>
                         </div>
 
-                        <div className="bg-dark-50/50 p-4 rounded-xl border border-dark-100 text-xs md:text-[10.5px] leading-relaxed text-gray-text">
+                        <div className="bg-white/50 p-4 rounded-xl border border-gray-100 text-xs md:text-[10.5px] leading-relaxed text-gray-500">
                           💡 <span className="font-bold text-dark-850">XAI Model Explanation:</span> This explanation is generated locally using Shapley values (SHAP) computed from realtime sensor logs.
                         </div>
                       </div>
@@ -2373,8 +2373,8 @@ export const Dashboard = () => {
 
                     {/* Bottom: Root Cause analysis & maintenance planner */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                        <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Root Cause Analysis</h4>
+                      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                        <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Root Cause Analysis</h4>
                         <div className="space-y-2 text-base md:text-sm md:text-xs font-semibold">
                           <div className="flex justify-between items-center p-2 bg-red-50 border border-red-200 rounded-xl">
                             <span className="text-red-700 font-bold">Primary Cause:</span>
@@ -2384,41 +2384,41 @@ export const Dashboard = () => {
                             <span className="text-amber-700 font-bold">Secondary Cause:</span>
                             <span className="font-bold text-amber-950">Bearing lubrication depletion</span>
                           </div>
-                          <div className="p-2 border border-dark-100 bg-dark-50/20 rounded-xl space-y-1">
-                            <span className="text-xs md:text-[10px] text-gray-text uppercase font-extrabold tracking-wider block">Contributing Factors</span>
-                            <p className="text-xs md:text-[11px] text-dark-800">Operational speed overload (~1800 RPM), continuous load duty cycle.</p>
+                          <div className="p-2 border border-gray-100 bg-white/20 rounded-xl space-y-1">
+                            <span className="text-xs md:text-[10px] text-gray-500 uppercase font-extrabold tracking-wider block">Contributing Factors</span>
+                            <p className="text-xs md:text-[11px] text-gray-800">Operational speed overload (~1800 RPM), continuous load duty cycle.</p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                        <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Suggested Action Details</h4>
-                        <div className="p-4 border border-dark-100 bg-dark-50/25 rounded-2xl space-y-3.5 text-base md:text-sm md:text-xs">
+                      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                        <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Suggested Action Details</h4>
+                        <div className="p-4 border border-gray-100 bg-white/25 rounded-2xl space-y-3.5 text-base md:text-sm md:text-xs">
                           <div className="flex items-center gap-2 text-primary-750 font-bold">
                             <Clock className="w-4 h-4 text-primary-500" /> Maintenance Schedule
                           </div>
-                          <p className="text-xs md:text-[11px] font-semibold text-dark-800 leading-relaxed">
+                          <p className="text-xs md:text-[11px] font-semibold text-gray-800 leading-relaxed">
                             {selectedMachine.suggestedAction}
                           </p>
-                          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-dark-150 text-xs md:text-[10px] font-bold text-gray-text">
+                          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-gray-200 text-xs md:text-[10px] font-bold text-gray-500">
                             <div>Est. Downtime: <span className="text-dark-850 font-extrabold">2.5 Hours</span></div>
                             <div>Cost: <span className="text-dark-850 font-extrabold">{selectedMachine.maintCost || '₹12,000'}</span></div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                        <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">AI Prediction History</h4>
-                        <div className="space-y-3 text-xs md:text-[11px] font-semibold text-gray-text relative pl-4 border-l border-dark-200 ml-2">
+                      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                        <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">AI Prediction History</h4>
+                        <div className="space-y-3 text-xs md:text-[11px] font-semibold text-gray-500 relative pl-4 border-l border-gray-200 ml-2">
                           <div className="relative">
                             <span className="absolute -left-[20.5px] top-1 w-2.5 h-2.5 rounded-full bg-red-500 border border-white" />
                             <span className="font-mono text-xs md:text-[9px] block">14:22</span>
-                            <p className="text-dark-800 font-bold">Bearing failure warning flags generated.</p>
+                            <p className="text-gray-800 font-bold">Bearing failure warning flags generated.</p>
                           </div>
                           <div className="relative">
                             <span className="absolute -left-[20.5px] top-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-white" />
                             <span className="font-mono text-xs md:text-[9px] block">13:50</span>
-                            <p className="text-dark-800">Operational profiles registered nominal parameters.</p>
+                            <p className="text-gray-800">Operational profiles registered nominal parameters.</p>
                           </div>
                         </div>
                       </div>
@@ -2440,7 +2440,7 @@ export const Dashboard = () => {
             const socAlerts = alerts.filter(a => a.type === 'Cybersecurity');
 
             return (
-              <div className="space-y-6 animate-fade-in text-dark-800 font-sans">
+              <div className="space-y-6 animate-fade-in text-gray-800 font-sans">
                 {/* Header panel */}
                 <div className="bg-slate-900 border border-slate-800 text-white rounded-3xl p-5 shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden">
                   <div className="absolute inset-0 bg-grid-pattern opacity-5" />
@@ -2462,28 +2462,28 @@ export const Dashboard = () => {
 
                 {/* SOC KPIs Dashboard */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Overall Security Score</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Overall Security Score</span>
                     <span className="text-xl font-black text-emerald-600 mt-1 block">98% Secure</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Connected ICS Assets</span>
-                    <span className="text-xl font-black text-dark-900 mt-1 block">{cyberDevices.length} PLC Nodes</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Connected ICS Assets</span>
+                    <span className="text-xl font-black text-gray-900 mt-1 block">{cyberDevices.length} PLC Nodes</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Failed Login Attempts</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Failed Login Attempts</span>
                     <span className="text-xl font-black text-amber-600 mt-1 block">2 Attempts</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Active Alerts today</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Active Alerts today</span>
                     <span className="text-xl font-black text-red-500 mt-1 block">{socAlerts.length} Events</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Traffic Volume chart */}
-                  <div className="lg:col-span-2 bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                    <h3 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">OT Network Bus Data Flow</h3>
+                  <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                    <h3 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">OT Network Bus Data Flow</h3>
                     <div className="h-64">
                       <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={trafficHistory}>
@@ -2498,27 +2498,27 @@ export const Dashboard = () => {
                   </div>
 
                   {/* Isolated threat directory */}
-                  <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4 flex flex-col justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4 flex flex-col justify-between">
                     <div>
-                      <span className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest block border-b border-dark-100 pb-2">Active OT Device Whitelist</span>
+                      <span className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest block border-b border-gray-100 pb-2">Active OT Device Whitelist</span>
                       <div className="space-y-3 mt-3 max-h-[220px] overflow-y-auto pr-1">
                         {filteredDevices.map(d => (
                           <div 
                             key={d.id} 
                             onClick={() => setSelectedDeviceId(d.id)}
                             className={`p-3 border rounded-2xl space-y-1.5 text-base md:text-sm md:text-xs cursor-pointer transition-smooth ${
-                              selectedDeviceId === d.id ? 'border-primary-500 bg-primary-50/30' : 'border-dark-200 hover:bg-dark-50/50'
+                              selectedDeviceId === d.id ? 'border-primary-500 bg-primary-50/30' : 'border-gray-200 hover:bg-white/50'
                             }`}
                           >
                             <div className="flex justify-between font-bold">
-                              <span className="text-dark-900 font-bold">{d.name}</span>
+                              <span className="text-gray-900 font-bold">{d.name}</span>
                               <span className={`text-xs md:text-[9px] uppercase border px-1.5 rounded ${
                                 d.riskLevel === 'Critical' ? 'bg-red-50 text-red-700 border-red-200' :
                                 d.riskLevel === 'Warning' ? 'bg-orange-50 text-orange-700 border-orange-250' :
                                 'bg-emerald-50 text-emerald-700 border-emerald-250'
                               }`}>{d.riskLevel}</span>
                             </div>
-                            <div className="text-xs md:text-[10px] text-gray-text font-mono">IP: {d.ip} | ID: {d.id}</div>
+                            <div className="text-xs md:text-[10px] text-gray-500 font-mono">IP: {d.ip} | ID: {d.id}</div>
                           </div>
                         ))}
                       </div>
@@ -2528,44 +2528,44 @@ export const Dashboard = () => {
 
                 {/* Selected Device Details Diagnostics */}
                 {selectedDevice && (
-                  <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-5">
-                    <div className="border-b border-dark-100 pb-3 flex justify-between items-center">
-                      <h3 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-5">
+                    <div className="border-b border-gray-100 pb-3 flex justify-between items-center">
+                      <h3 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest">
                         Asset Security Diagnostics: {selectedDevice.name}
                       </h3>
-                      <span className="text-xs md:text-[10px] font-mono font-bold text-gray-text">{selectedDevice.id}</span>
+                      <span className="text-xs md:text-[10px] font-mono font-bold text-gray-500">{selectedDevice.id}</span>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-base md:text-sm md:text-xs">
                       <div className="space-y-3">
-                        <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Network Specifications</span>
+                        <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Network Specifications</span>
                         <div className="space-y-1.5 font-semibold text-dark-850">
-                          <div>IP Address: <span className="font-mono text-dark-900">{selectedDevice.ip}</span></div>
-                          <div>MAC Address: <span className="font-mono text-dark-900">{selectedDevice.mac}</span></div>
-                          <div>Firmware version: <span className="font-mono text-dark-900">{selectedDevice.firmware}</span></div>
+                          <div>IP Address: <span className="font-mono text-gray-900">{selectedDevice.ip}</span></div>
+                          <div>MAC Address: <span className="font-mono text-gray-900">{selectedDevice.mac}</span></div>
+                          <div>Firmware version: <span className="font-mono text-gray-900">{selectedDevice.firmware}</span></div>
                         </div>
                       </div>
 
                       <div className="space-y-3">
-                        <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">AI Trust Diagnostics</span>
+                        <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">AI Trust Diagnostics</span>
                         <div className="space-y-1.5 font-semibold text-dark-850">
                           <div className="flex items-center gap-2">Anomaly Trust Score: <span className={`font-bold ${selectedDevice.trustScore < 70 ? 'text-red-700' : 'text-emerald-700'}`}>{selectedDevice.trustScore}%</span></div>
                           <div className="flex items-center gap-2">Threat Risk Level: <span className={`font-bold uppercase ${selectedDevice.riskLevel === 'Critical' ? 'text-red-700 animate-pulse' : 'text-emerald-700'}`}>{selectedDevice.riskLevel}</span></div>
-                          <div>Linked Machine Asset: <span className="font-bold text-dark-900">{selectedDevice.machine}</span></div>
+                          <div>Linked Machine Asset: <span className="font-bold text-gray-900">{selectedDevice.machine}</span></div>
                         </div>
                       </div>
 
                       <div className="space-y-3">
-                        <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Packet Audit telemetry</span>
+                        <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Packet Audit telemetry</span>
                         <div className="space-y-1.5 font-semibold text-dark-850">
-                          <div>Packet Ingestion Rate: <span className="font-mono text-dark-900">{selectedDevice.packetsSec} Packets/Sec</span></div>
-                          <div>OT Payload Error Rate: <span className="font-mono text-dark-900">{selectedDevice.errorRate}%</span></div>
+                          <div>Packet Ingestion Rate: <span className="font-mono text-gray-900">{selectedDevice.packetsSec} Packets/Sec</span></div>
+                          <div>OT Payload Error Rate: <span className="font-mono text-gray-900">{selectedDevice.errorRate}%</span></div>
                           <div className="flex items-center gap-1.5">Node Status: <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> <span className="font-bold text-emerald-700">Online</span></div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="border-t border-dark-150 pt-4 flex gap-3">
+                    <div className="border-t border-gray-200 pt-4 flex gap-3">
                       <button 
                         onClick={() => triggerQuickAction('quarantine', `Quarantine payload overrides applied to ${selectedDevice.id}. Device isolated.`)}
                         className="py-2 px-5 bg-red-650 hover:bg-red-750 text-white text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth shadow-md shadow-red-600/10"
@@ -2574,7 +2574,7 @@ export const Dashboard = () => {
                       </button>
                       <button 
                         onClick={() => triggerQuickAction('whitelist', `Trust parameters whitelisted for device ${selectedDevice.id}.`)}
-                        className="py-2 px-5 border border-dark-200 hover:bg-dark-50 text-dark-800 text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth"
+                        className="py-2 px-5 border border-gray-200 hover:bg-white text-gray-800 text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth"
                       >
                         Whitelist Address
                       </button>
@@ -2588,10 +2588,10 @@ export const Dashboard = () => {
           {/* ─── TAB 5: ENERGY OPTIMIZATION ─── */}
           {activeTab === 'Energy Optimization' && (
             <div className="space-y-6 font-sans">
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                  <h2 className="text-base font-extrabold text-dark-900 tracking-tight">Energy Optimization</h2>
-                  <p className="text-base md:text-sm md:text-xs text-gray-text mt-0.5">Estimated peak demand allocations and carbon emissions savings.</p>
+                  <h2 className="text-base font-extrabold text-gray-900 tracking-tight">Energy Optimization</h2>
+                  <p className="text-base md:text-sm md:text-xs text-gray-500 mt-0.5">Estimated peak demand allocations and carbon emissions savings.</p>
                 </div>
                 <div className="flex items-center gap-3 text-base md:text-sm md:text-xs font-bold text-dark-850">
                   <span className="px-3 py-1 bg-primary-50 border border-primary-200 rounded-lg">Power Factor: {energyStats.powerFactor}</span>
@@ -2599,8 +2599,8 @@ export const Dashboard = () => {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                  <h3 className="text-base md:text-sm font-bold text-dark-900">Operational Peak Demand load (kW)</h3>
+                <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                  <h3 className="text-base md:text-sm font-bold text-gray-900">Operational Peak Demand load (kW)</h3>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={Array.from({ length: 8 }, (_, i) => ({
@@ -2617,9 +2617,9 @@ export const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                  <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block border-b border-dark-100 pb-2">Sustainability Indicators</span>
-                  <div className="space-y-4 pt-2 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                  <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block border-b border-gray-100 pb-2">Sustainability Indicators</span>
+                  <div className="space-y-4 pt-2 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                     <div className="flex justify-between"><span>Current load kW:</span> <span className="font-bold text-dark-950">{energyStats.currentLoadKw} kW</span></div>
                     <div className="flex justify-between"><span>Solar offset:</span> <span className="text-emerald-500 font-bold">25% Generated</span></div>
                     <div className="flex justify-between"><span>Projected monthly savings:</span> <span className="text-emerald-500 font-bold">₹32,700</span></div>
@@ -2632,15 +2632,15 @@ export const Dashboard = () => {
           {/* ─── TAB 6: ALERTS CENTER ─── */}
           {activeTab === 'Alerts' && (
             <div className="space-y-6 animate-fade-in font-sans">
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                  <h2 className="text-base font-extrabold text-dark-900 tracking-tight">Industrial Incident Command Center</h2>
-                  <p className="text-base md:text-sm md:text-xs text-gray-text mt-0.5">Real-time alert prioritizations, acknowledgments, and resolutions.</p>
+                  <h2 className="text-base font-extrabold text-gray-900 tracking-tight">Industrial Incident Command Center</h2>
+                  <p className="text-base md:text-sm md:text-xs text-gray-500 mt-0.5">Real-time alert prioritizations, acknowledgments, and resolutions.</p>
                 </div>
                 {alViewMode === 'detail' && (
                   <button 
                     onClick={() => setAlViewMode('list')}
-                    className="flex items-center gap-2 py-1.5 px-4 border border-dark-200 hover:bg-dark-50 text-dark-800 text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth"
+                    className="flex items-center gap-2 py-1.5 px-4 border border-gray-200 hover:bg-white text-gray-800 text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     <span>Back to Incidents</span>
@@ -2649,12 +2649,12 @@ export const Dashboard = () => {
               </div>
 
               {alViewMode === 'list' ? (
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm">
-                  <h3 className="text-base md:text-sm font-bold text-dark-900 mb-2">Central Incident Alerts Directory</h3>
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                  <h3 className="text-base md:text-sm font-bold text-gray-900 mb-2">Central Incident Alerts Directory</h3>
                   <div className="overflow-x-auto mt-4">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-dark-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-text bg-dark-50/50">
+                        <tr className="border-b border-gray-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-white/50">
                           <th className="py-2.5 px-3">Alert ID</th>
                           <th className="py-2.5 px-3">Source Machine</th>
                           <th className="py-2.5 px-3 text-center">Priority</th>
@@ -2663,22 +2663,22 @@ export const Dashboard = () => {
                           <th className="py-2.5 px-3 text-right">Status</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-dark-100 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                      <tbody className="divide-y divide-dark-100 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                         {alerts.map((alt) => (
                           <tr 
                             key={alt.id} 
                             onClick={() => { setSelectedAlertId(alt.id); setAlViewMode('detail'); }}
-                            className="hover:bg-dark-50/50 transition-colors cursor-pointer"
+                            className="hover:bg-white/50 transition-colors cursor-pointer"
                           >
-                            <td className="py-3 px-3 font-mono text-xs md:text-[11px] text-gray-text">{alt.id}</td>
-                            <td className="py-3 px-3 font-bold text-dark-900">{alt.machine}</td>
+                            <td className="py-3 px-3 font-mono text-xs md:text-[11px] text-gray-500">{alt.id}</td>
+                            <td className="py-3 px-3 font-bold text-gray-900">{alt.machine}</td>
                             <td className="py-3 px-3 text-center">
                               <span className={`inline-flex px-2 py-0.5 rounded text-xs md:text-[9px] font-extrabold uppercase border ${
                                 alt.priority === 'Critical' ? 'bg-red-50 text-red-600 border-red-200' : 'bg-orange-50 text-orange-600 border-orange-200'
                               }`}>{alt.priority}</span>
                             </td>
                             <td className="py-3 px-3 text-center font-bold text-primary-600">{alt.type}</td>
-                            <td className="py-3 px-3 text-gray-text">{alt.summary}</td>
+                            <td className="py-3 px-3 text-gray-500">{alt.summary}</td>
                             <td className="py-3 px-3 text-right">
                               <span className={`inline-flex px-2 py-0.5 rounded text-xs md:text-[9px] font-extrabold uppercase border ${
                                 alt.status === 'Open' ? 'bg-red-50 text-red-600 border-red-200' :
@@ -2746,17 +2746,17 @@ export const Dashboard = () => {
                   };
 
                   return (
-                    <div className="bg-white border border-dark-200 rounded-2xl p-6 shadow-sm space-y-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-dark-150 pb-4 gap-4">
+                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-200 pb-4 gap-4">
                         <div className="flex items-center gap-3">
-                          <span className="font-mono text-base text-gray-text font-bold">{alertDetails.id}</span>
+                          <span className="font-mono text-base text-gray-500 font-bold">{alertDetails.id}</span>
                           <span className={`px-2.5 py-0.5 rounded-lg text-xs md:text-[10px] font-extrabold uppercase border ${
                             alertDetails.priority === 'Critical' ? 'bg-red-50 text-red-600 border-red-200' : 'bg-orange-50 text-orange-600 border-orange-200'
                           }`}>{alertDetails.priority}</span>
                           <span className="text-base md:text-sm md:text-xs font-bold text-primary-600">{alertDetails.type}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide">Status:</span>
+                          <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide">Status:</span>
                           <span className={`px-2.5 py-0.5 rounded-lg text-xs md:text-[10px] font-extrabold uppercase border ${
                             alertDetails.status === 'Open' ? 'bg-red-50 text-red-600 border-red-200' :
                             alertDetails.status === 'Acknowledged' ? 'bg-orange-50 text-orange-600 border-orange-200' :
@@ -2768,28 +2768,28 @@ export const Dashboard = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-base md:text-sm md:text-xs">
                         <div className="space-y-4">
                           <div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Source Asset</span>
-                            <div className="font-bold text-dark-900">{alertDetails.machine} ({alertDetails.machineId || alertDetails.machine_id || 'MC-104'})</div>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Source Asset</span>
+                            <div className="font-bold text-gray-900">{alertDetails.machine} ({alertDetails.machineId || alertDetails.machine_id || 'MC-104'})</div>
                           </div>
                           <div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Incident Summary</span>
-                            <div className="font-semibold text-dark-800 leading-relaxed bg-dark-50 p-3 rounded-xl border border-dark-200">{alertDetails.summary}</div>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Incident Summary</span>
+                            <div className="font-semibold text-gray-800 leading-relaxed bg-white p-3 rounded-xl border border-gray-200">{alertDetails.summary}</div>
                           </div>
                           <div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Affected Component</span>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Affected Component</span>
                             <div className="font-mono font-bold text-dark-850">{alertDetails.affected || 'Unknown System Line'}</div>
                           </div>
                         </div>
 
                         <div className="space-y-4">
                           <div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Assigned Maintenance Operator</span>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Assigned Maintenance Operator</span>
                             <div className="flex items-center gap-2">
-                              <span className="font-bold text-dark-900">{alertDetails.assignedTo || 'Unassigned'}</span>
+                              <span className="font-bold text-gray-900">{alertDetails.assignedTo || 'Unassigned'}</span>
                               <select 
                                 value={alertDetails.assignedTo || 'Unassigned'} 
                                 onChange={(e) => handleAssignAlert(alertDetails.id, e.target.value)}
-                                className="border border-dark-200 rounded-lg p-1 bg-dark-50 text-xs md:text-[10px] font-bold outline-none cursor-pointer text-dark-800"
+                                className="border border-gray-200 rounded-lg p-1 bg-white text-xs md:text-[10px] font-bold outline-none cursor-pointer text-gray-800"
                               >
                                 <option value="Unassigned">Assign...</option>
                                 <option value="Aishwarya R">Aishwarya R</option>
@@ -2799,17 +2799,17 @@ export const Dashboard = () => {
                             </div>
                           </div>
                           <div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Generated By Model</span>
-                            <div className="font-bold text-dark-900">{alertDetails.generatedBy || 'LSTM v2.1 (EdgeShield)'}</div>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Generated By Model</span>
+                            <div className="font-bold text-gray-900">{alertDetails.generatedBy || 'LSTM v2.1 (EdgeShield)'}</div>
                           </div>
                           <div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-1">Timestamp</span>
-                            <div className="font-bold text-dark-900">{alertDetails.timestamp}</div>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-1">Timestamp</span>
+                            <div className="font-bold text-gray-900">{alertDetails.timestamp}</div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="border-t border-dark-150 pt-5 flex flex-wrap gap-3">
+                      <div className="border-t border-gray-200 pt-5 flex flex-wrap gap-3">
                         <button 
                           onClick={() => handleUpdateStatus('Acknowledged')}
                           disabled={alertDetails.status !== 'Open'}
@@ -2826,7 +2826,7 @@ export const Dashboard = () => {
                         </button>
                         <button 
                           onClick={() => setAlViewMode('list')}
-                          className="py-2 px-5 border border-dark-200 hover:bg-dark-50 text-dark-800 text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth"
+                          className="py-2 px-5 border border-gray-200 hover:bg-white text-gray-800 text-base md:text-sm md:text-xs font-bold rounded-xl transition-smooth"
                         >
                           Close Details
                         </button>
@@ -2841,16 +2841,16 @@ export const Dashboard = () => {
           {/* ─── TAB 7: REPORTS ─── */}
           {activeTab === 'Reports' && (
             <div className="space-y-6 font-sans animate-fade-in">
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                <h3 className="text-base md:text-sm font-bold text-dark-900 pb-3 border-b border-dark-100 flex items-center justify-between">
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                <h3 className="text-base md:text-sm font-bold text-gray-900 pb-3 border-b border-gray-100 flex items-center justify-between">
                   Operations Reports Exporters
                   <FileText className="w-5 h-5 text-primary-500" />
                 </h3>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                   <div className="space-y-1">
-                    <label className="text-xs md:text-[9px] text-gray-text uppercase block font-bold">Report Category</label>
-                    <select value={repSelectedType} onChange={(e) => setRepSelectedType(e.target.value)} className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white">
+                    <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Report Category</label>
+                    <select value={repSelectedType} onChange={(e) => setRepSelectedType(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white">
                       <option value="Executive Summary">Executive Summary</option>
                       <option value="Machine Telemetry logs">Machine Telemetry logs</option>
                       <option value="Cybersecurity threat audits">Cybersecurity threat audits</option>
@@ -2858,8 +2858,8 @@ export const Dashboard = () => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs md:text-[9px] text-gray-text uppercase block font-bold">Export Format</label>
-                    <select value={repSelectedFormat} onChange={(e) => setRepSelectedFormat(e.target.value)} className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white">
+                    <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Export Format</label>
+                    <select value={repSelectedFormat} onChange={(e) => setRepSelectedFormat(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white">
                       <option value="PDF">PDF Sheet</option>
                       <option value="Excel">Excel Spreadsheet</option>
                       <option value="CSV">Comma Separated CSV</option>
@@ -2883,29 +2883,29 @@ export const Dashboard = () => {
           {/* ─── TAB 8: AI COPILOT ─── */}
           {activeTab === 'AI Copilot' && (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 font-sans">
-              <div className="lg:col-span-3 bg-white border border-dark-200 rounded-2xl shadow-sm flex flex-col justify-between h-[520px] overflow-hidden">
-                <div className="p-4 border-b border-dark-150 flex items-center justify-between flex-shrink-0 select-none bg-dark-50/20">
+              <div className="lg:col-span-3 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col justify-between h-[520px] overflow-hidden">
+                <div className="p-4 border-b border-gray-200 flex items-center justify-between flex-shrink-0 select-none bg-white/20">
                   <div className="flex items-center gap-2.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 tracking-tight">AI Copilot Node Online</span>
+                    <span className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 tracking-tight">AI Copilot Node Online</span>
                   </div>
-                  <span className="text-xs md:text-[10px] text-gray-text font-bold uppercase tracking-wider">Response Time: &lt;1.0s</span>
+                  <span className="text-xs md:text-[10px] text-gray-500 font-bold uppercase tracking-wider">Response Time: &lt;1.0s</span>
                 </div>
 
-                <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-dark-50/10">
+                <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-white/10">
                   {chatMessages.map(msg => (
                     <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[80%] rounded-2xl p-3.5 text-base md:text-sm md:text-xs ${msg.sender === 'user' ? 'bg-primary-600 text-white shadow-md' : 'bg-white border border-dark-200 text-dark-800'}`}>
+                      <div className={`max-w-[80%] rounded-2xl p-3.5 text-base md:text-sm md:text-xs ${msg.sender === 'user' ? 'bg-primary-600 text-white shadow-md' : 'bg-white border border-gray-200 text-gray-800'}`}>
                         <div className="font-semibold leading-relaxed whitespace-pre-wrap">{parseMarkdown(msg.text)}</div>
                         {msg.widget && renderCopilotWidget(msg.widget)}
-                        <span className={`text-[8.5px] block mt-1.5 font-bold ${msg.sender === 'user' ? 'text-primary-200 text-right' : 'text-gray-text'}`}>{msg.time}</span>
+                        <span className={`text-[8.5px] block mt-1.5 font-bold ${msg.sender === 'user' ? 'text-primary-200 text-right' : 'text-gray-500'}`}>{msg.time}</span>
                       </div>
                     </div>
                   ))}
                   <div ref={chatBottomRef} />
                 </div>
 
-                <div className="p-4 border-t border-dark-200 space-y-3 flex-shrink-0 bg-dark-50/20">
+                <div className="p-4 border-t border-gray-200 space-y-3 flex-shrink-0 bg-white/20">
 
                   {/* Interim transcript live preview */}
                   {(voiceActive || interimTranscript) && (
@@ -2932,7 +2932,7 @@ export const Dashboard = () => {
                       className={`p-2.5 border rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
                         voiceActive
                           ? 'bg-red-500 border-red-500 text-white shadow-lg shadow-red-500/30 scale-110'
-                          : 'bg-white border-dark-200 text-dark-500 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-600'
+                          : 'bg-white border-gray-200 text-gray-500 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-600'
                       }`}
                     >
                       <Mic className="w-5 h-5" />
@@ -2943,7 +2943,7 @@ export const Dashboard = () => {
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyDown={(e) => { if (e.key === 'Enter') handleSendPrompt(chatInput); }}
                       placeholder={voiceActive ? 'Listening… speak your query' : 'Ask anything about Detroit Hub #4...'}
-                      className="flex-1 px-4 py-2.5 border border-dark-200 rounded-xl text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-smooth"
+                      className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-smooth"
                     />
                     <button
                       onClick={() => handleSendPrompt(chatInput)}
@@ -2956,15 +2956,15 @@ export const Dashboard = () => {
               </div>
 
               <div className="space-y-6 overflow-y-auto h-full pr-1">
-                <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                  <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block border-b border-dark-100 pb-2 font-mono">Suggested Prompts</span>
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                  <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block border-b border-gray-100 pb-2 font-mono">Suggested Prompts</span>
                   <div className="space-y-2">
                     {[
                       "Which machine has the highest failure probability?",
                       "Why is Compressor MC-104 marked as critical?",
                       "Show today's active cybersecurity threats."
                     ].map((q, idx) => (
-                      <button key={idx} onClick={() => handleSendPrompt(q)} className="w-full text-left p-2.5 border border-dark-200 hover:border-primary-500 bg-white rounded-xl text-xs md:text-[10.5px] font-bold text-dark-800 hover:text-primary-600 transition-smooth shadow-sm">{q}</button>
+                      <button key={idx} onClick={() => handleSendPrompt(q)} className="w-full text-left p-2.5 border border-gray-200 hover:border-primary-500 bg-white rounded-xl text-xs md:text-[10.5px] font-bold text-gray-800 hover:text-primary-600 transition-smooth shadow-sm">{q}</button>
                     ))}
                   </div>
                 </div>
@@ -2977,12 +2977,12 @@ export const Dashboard = () => {
             <div className="space-y-6 animate-fade-in font-sans">
               
               {/* User Directory */}
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                <h3 className="text-base md:text-sm font-bold text-dark-900">Operator Access Directory</h3>
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                <h3 className="text-base md:text-sm font-bold text-gray-900">Operator Access Directory</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-dark-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-text bg-dark-50/50">
+                      <tr className="border-b border-gray-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-white/50">
                         <th className="py-2.5 px-3">Name</th>
                         <th className="py-2.5 px-3">Department</th>
                         <th className="py-2.5 px-3">Role</th>
@@ -2990,16 +2990,16 @@ export const Dashboard = () => {
                         <th className="py-2.5 px-3 text-right">Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-dark-100 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                    <tbody className="divide-y divide-dark-100 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                       {users.map(u => (
-                        <tr key={u.empId} className="hover:bg-dark-50/50 transition-colors">
+                        <tr key={u.empId} className="hover:bg-white/50 transition-colors">
                           <td className="py-3 px-3">
-                            <div className="font-bold text-dark-900">{u.name}</div>
-                            <span className="text-xs md:text-[10px] text-gray-text font-mono font-semibold">{u.email}</span>
+                            <div className="font-bold text-gray-900">{u.name}</div>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-mono font-semibold">{u.email}</span>
                           </td>
-                          <td className="py-3 px-3 text-gray-text">{u.dept}</td>
+                          <td className="py-3 px-3 text-gray-500">{u.dept}</td>
                           <td className="py-3 px-3"><span className="bg-primary-50 border border-primary-200 text-primary-700 px-2 py-0.5 rounded text-xs md:text-[10px] font-extrabold uppercase">{u.role}</span></td>
-                          <td className="py-3 px-3 text-gray-text">{u.lastLogin}</td>
+                          <td className="py-3 px-3 text-gray-500">{u.lastLogin}</td>
                           <td className="py-3 px-3 text-right">
                             <span className={`inline-flex px-2 py-0.5 rounded text-xs md:text-[9px] font-extrabold uppercase border ${getUserStatusBadge(u.status)}`}>{u.status}</span>
                           </td>
@@ -3011,12 +3011,12 @@ export const Dashboard = () => {
               </div>
 
               {/* Privilege Matrix Grid */}
-              <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                <h3 className="text-base md:text-sm font-bold text-dark-900">Privilegematrix Grid</h3>
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                <h3 className="text-base md:text-sm font-bold text-gray-900">Privilegematrix Grid</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse text-base md:text-sm md:text-xs">
                     <thead>
-                      <tr className="border-b border-dark-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-text bg-dark-50/50">
+                      <tr className="border-b border-gray-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-white/50">
                         <th className="py-2 px-3">Module</th>
                         <th className="py-2 px-3 text-center">View</th>
                         <th className="py-2 px-3 text-center">Create</th>
@@ -3024,10 +3024,10 @@ export const Dashboard = () => {
                         <th className="py-2 px-3 text-center">Export</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-dark-100 font-semibold text-dark-800">
+                    <tbody className="divide-y divide-dark-100 font-semibold text-gray-800">
                       {Object.keys(permissionsMatrix).map(moduleKey => (
-                        <tr key={moduleKey} className="hover:bg-dark-50/50">
-                          <td className="py-3 px-3 font-bold text-dark-900">{moduleKey}</td>
+                        <tr key={moduleKey} className="hover:bg-white/50">
+                          <td className="py-3 px-3 font-bold text-gray-900">{moduleKey}</td>
                           {['view', 'create', 'edit', 'export'].map(actionKey => (
                             <td key={actionKey} className="py-3 px-3 text-center">
                               <input 
@@ -3058,8 +3058,8 @@ export const Dashboard = () => {
           {/* ─── TAB 10: SYSTEM CONFIG & SETTINGS ─── */}
           {activeTab === 'Settings' && (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 font-sans">
-              <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm space-y-1 h-fit">
-                <span className="text-xs md:text-[10px] text-gray-text font-extrabold uppercase tracking-wide block mb-3 px-3 font-mono">Settings menu</span>
+              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm space-y-1 h-fit">
+                <span className="text-xs md:text-[10px] text-gray-500 font-extrabold uppercase tracking-wide block mb-3 px-3 font-mono">Settings menu</span>
                 {[
                   { id: 'general', name: 'General & Factory Setup', icon: Globe },
                   { id: 'ai', name: 'AI Model Configurations', icon: Cpu },
@@ -3072,7 +3072,7 @@ export const Dashboard = () => {
                     <button 
                       key={menu.id} 
                       onClick={() => setSettingsActiveMenu(menu.id)}
-                      className={`w-full flex items-center gap-3 py-2 px-3 rounded-lg text-base md:text-sm md:text-xs font-bold transition-smooth ${isActive ? 'bg-primary-50 text-primary-700' : 'text-gray-text hover:bg-dark-50'}`}
+                      className={`w-full flex items-center gap-3 py-2 px-3 rounded-lg text-base md:text-sm md:text-xs font-bold transition-smooth ${isActive ? 'bg-primary-50 text-primary-700' : 'text-gray-500 hover:bg-white'}`}
                     >
                       <Icon className="w-4 h-4" />
                       <span>{menu.name}</span>
@@ -3085,19 +3085,19 @@ export const Dashboard = () => {
                 
                 {/* General Config */}
                 {settingsActiveMenu === 'general' && (
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-5">
-                    <h3 className="text-base md:text-sm font-bold text-dark-900 pb-3 border-b border-dark-100 flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-5">
+                    <h3 className="text-base md:text-sm font-bold text-gray-900 pb-3 border-b border-gray-100 flex items-center justify-between">
                       General Settings
                       <Globe className="w-4.5 h-4.5 text-primary-500" />
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                       <div className="space-y-1">
-                        <label className="text-xs md:text-[9px] text-gray-text uppercase block font-bold">Factory Name</label>
-                        <input type="text" value={factoryName} onChange={(e) => setFactoryName(e.target.value)} className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white" />
+                        <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Factory Name</label>
+                        <input type="text" value={factoryName} onChange={(e) => setFactoryName(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white" />
                       </div>
                       <div className="space-y-1">
-                        <label className="text-xs md:text-[9px] text-gray-text uppercase block font-bold">Timezone Location</label>
-                        <input type="text" value={timezone} onChange={(e) => setTimezone(e.target.value)} className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white" />
+                        <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-bold">Timezone Location</label>
+                        <input type="text" value={timezone} onChange={(e) => setTimezone(e.target.value)} className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs font-semibold outline-none focus:bg-white" />
                       </div>
                     </div>
                   </div>
@@ -3105,14 +3105,14 @@ export const Dashboard = () => {
 
                 {/* AI Config */}
                 {settingsActiveMenu === 'ai' && (
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-5">
-                    <h3 className="text-base md:text-sm font-bold text-dark-900 pb-3 border-b border-dark-100 flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-5">
+                    <h3 className="text-base md:text-sm font-bold text-gray-900 pb-3 border-b border-gray-100 flex items-center justify-between">
                       AI Model Configurations
                       <Cpu className="w-4.5 h-4.5 text-primary-500" />
                     </h3>
-                    <div className="space-y-4 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                    <div className="space-y-4 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                       <div className="space-y-2">
-                        <div className="flex justify-between text-xs md:text-[10px] font-bold text-gray-text">
+                        <div className="flex justify-between text-xs md:text-[10px] font-bold text-gray-500">
                           <span>AI Predictive Sensitivity Threshold</span>
                           <span className="font-mono text-dark-950">{predictSensitivity}%</span>
                         </div>
@@ -3124,21 +3124,21 @@ export const Dashboard = () => {
 
                 {/* Machine threshold config */}
                 {settingsActiveMenu === 'machine' && (
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-5">
-                    <h3 className="text-base md:text-sm font-bold text-dark-900 pb-3 border-b border-dark-100 flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-5">
+                    <h3 className="text-base md:text-sm font-bold text-gray-900 pb-3 border-b border-gray-100 flex items-center justify-between">
                       Machine Alert Threshold Guidelines
                       <Activity className="w-4.5 h-4.5 text-primary-500" />
                     </h3>
-                    <div className="space-y-4 text-base md:text-sm md:text-xs font-semibold text-dark-800">
+                    <div className="space-y-4 text-base md:text-sm md:text-xs font-semibold text-gray-800">
                       <div className="space-y-2">
-                        <div className="flex justify-between text-xs md:text-[10px] font-bold text-gray-text">
+                        <div className="flex justify-between text-xs md:text-[10px] font-bold text-gray-500">
                           <span>Warning Health Threshold</span>
                           <span className="font-mono text-dark-950">&lt; {healthWarnThreshold}%</span>
                         </div>
                         <input type="range" min="70" max="90" value={healthWarnThreshold} onChange={(e) => setHealthWarnThreshold(e.target.value)} className="w-full accent-primary-600 cursor-pointer h-1 bg-dark-200 rounded-full" />
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-xs md:text-[10px] font-bold text-gray-text">
+                        <div className="flex justify-between text-xs md:text-[10px] font-bold text-gray-500">
                           <span>Critical Health Threshold</span>
                           <span className="font-mono text-dark-950">&lt; {healthCritThreshold}%</span>
                         </div>
@@ -3150,16 +3150,16 @@ export const Dashboard = () => {
 
                 {/* Notification Rules */}
                 {settingsActiveMenu === 'notify' && (
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-5">
-                    <h3 className="text-base md:text-sm font-bold text-dark-900 pb-3 border-b border-dark-100 flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-5">
+                    <h3 className="text-base md:text-sm font-bold text-gray-900 pb-3 border-b border-gray-100 flex items-center justify-between">
                       Notification Rules Settings
                       <Bell className="w-4.5 h-4.5 text-primary-500" />
                     </h3>
-                    <div className="space-y-3.5 text-base md:text-sm md:text-xs font-semibold text-dark-800">
-                      <div className="flex items-center justify-between p-3 border border-dark-200 rounded-xl">
+                    <div className="space-y-3.5 text-base md:text-sm md:text-xs font-semibold text-gray-800">
+                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
                         <div>
-                          <div className="font-bold text-dark-900">Email Alerts Dispatch</div>
-                          <span className="text-xs md:text-[10px] text-gray-text font-semibold uppercase leading-tight">Sends Critical alarms to supervisors</span>
+                          <div className="font-bold text-gray-900">Email Alerts Dispatch</div>
+                          <span className="text-xs md:text-[10px] text-gray-500 font-semibold uppercase leading-tight">Sends Critical alarms to supervisors</span>
                         </div>
                         <input 
                           type="checkbox" 
@@ -3172,10 +3172,10 @@ export const Dashboard = () => {
                           className="w-4 h-4 text-primary-600 border-dark-300 rounded focus:ring-primary-500 cursor-pointer" 
                         />
                       </div>
-                      <div className="flex items-center justify-between p-3 border border-dark-200 rounded-xl">
+                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
                         <div>
-                          <div className="font-bold text-dark-900">Audio Alarm indicators</div>
-                          <span className="text-xs md:text-[10px] text-gray-text font-semibold uppercase leading-tight">Synthesize localized warning sound chime</span>
+                          <div className="font-bold text-gray-900">Audio Alarm indicators</div>
+                          <span className="text-xs md:text-[10px] text-gray-500 font-semibold uppercase leading-tight">Synthesize localized warning sound chime</span>
                         </div>
                         <input 
                           type="checkbox" 
@@ -3207,30 +3207,30 @@ export const Dashboard = () => {
             const statusColorBg = currentTwinMachine.status === 'Critical' ? 'bg-red-50 text-red-700 border-red-200' : currentTwinMachine.status === 'Warning' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200';
 
             return (
-              <div className="space-y-6 font-sans animate-fade-in text-dark-800">
+              <div className="space-y-6 font-sans animate-fade-in text-gray-800">
                 {/* Header navigation back control bar */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white border border-dark-200 rounded-2xl p-4 shadow-sm gap-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white border border-gray-200 rounded-xl p-5 shadow-sm gap-4">
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => setActiveTab('Dashboard')}
-                      className="p-2 border border-dark-200 hover:bg-dark-50 rounded-xl text-dark-600 transition-colors"
+                      className="p-2 border border-gray-200 hover:bg-white rounded-xl text-gray-600 transition-colors"
                       title="Back to Overview"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <div>
-                      <h3 className="text-base md:text-sm font-bold text-dark-900 flex items-center gap-2">
+                      <h3 className="text-base md:text-sm font-bold text-gray-900 flex items-center gap-2">
                         🏭 Digital Twin Virtual Assembly Node
                       </h3>
-                      <p className="text-xs md:text-[10px] text-gray-text mt-0.5"> Detroit Hub #4 &gt; Asset representation network console</p>
+                      <p className="text-xs md:text-[10px] text-gray-500 mt-0.5"> Detroit Hub #4 &gt; Asset representation network console</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <label className="text-xs md:text-[9px] text-gray-text uppercase block font-extrabold tracking-wider">Select Active Engine:</label>
+                    <label className="text-xs md:text-[9px] text-gray-500 uppercase block font-extrabold tracking-wider">Select Active Engine:</label>
                     <select 
                       value={twinSelectedMachineId} 
                       onChange={(e) => setTwinSelectedMachineId(e.target.value)}
-                      className="border border-dark-200 rounded-xl px-3 py-1.5 bg-dark-50 text-base md:text-sm md:text-xs font-bold outline-none focus:bg-white cursor-pointer"
+                      className="border border-gray-200 rounded-xl px-3 py-1.5 bg-white text-base md:text-sm md:text-xs font-bold outline-none focus:bg-white cursor-pointer"
                     >
                       {machines.map(m => (
                         <option key={m.id} value={m.id}>{m.name} ({m.id})</option>
@@ -3241,12 +3241,12 @@ export const Dashboard = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Left Column: Visual Representation & Health Gauge */}
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
                     <div>
-                      <div className="flex justify-between items-start border-b border-dark-100 pb-3">
+                      <div className="flex justify-between items-start border-b border-gray-100 pb-3">
                         <div>
-                          <h4 className="text-base md:text-sm font-bold text-dark-900">{currentTwinMachine.name}</h4>
-                          <span className="text-xs md:text-[10px] font-mono text-gray-text">{currentTwinMachine.id} | Class: {currentTwinMachine.type}</span>
+                          <h4 className="text-base md:text-sm font-bold text-gray-900">{currentTwinMachine.name}</h4>
+                          <span className="text-xs md:text-[10px] font-mono text-gray-500">{currentTwinMachine.id} | Class: {currentTwinMachine.type}</span>
                         </div>
                         <span className={`px-2.5 py-0.5 rounded-full text-xs md:text-[9px] font-extrabold uppercase border ${statusColorBg}`}>
                           {currentTwinMachine.status}
@@ -3254,7 +3254,7 @@ export const Dashboard = () => {
                       </div>
 
                       {/* Machine Mock Schematic Vector representation */}
-                      <div className="my-6 flex justify-center items-center h-48 bg-dark-50/50 rounded-2xl border border-dashed border-dark-250 relative overflow-hidden">
+                      <div className="my-6 flex justify-center items-center h-48 bg-white/50 rounded-2xl border border-dashed border-dark-250 relative overflow-hidden">
                         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
                         
                         {/* Dynamic status glow */}
@@ -3283,13 +3283,13 @@ export const Dashboard = () => {
                               style={{ originX: "12px", originY: "12px" }}
                             />
                           </svg>
-                          <span className="text-xs md:text-[10px] uppercase tracking-widest text-gray-text font-extrabold">Virtual Twin Render</span>
+                          <span className="text-xs md:text-[10px] uppercase tracking-widest text-gray-500 font-extrabold">Virtual Twin Render</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Circular Health Gauge */}
-                    <div className="flex items-center justify-around bg-dark-50/40 p-4 rounded-xl border border-dark-100">
+                    <div className="flex items-center justify-around bg-white/40 p-4 rounded-xl border border-gray-100">
                       <div className="relative w-20 h-20 flex items-center justify-center">
                         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                           <circle cx="18" cy="18" r="16" fill="none" stroke="#F1F5F9" strokeWidth="3" />
@@ -3303,22 +3303,22 @@ export const Dashboard = () => {
                           />
                         </svg>
                         <div className="absolute flex flex-col items-center">
-                          <span className="text-base md:text-sm font-extrabold text-dark-900">{healthPercentage}%</span>
-                          <span className="text-[7.5px] uppercase font-bold tracking-wider text-gray-text">Health</span>
+                          <span className="text-base md:text-sm font-extrabold text-gray-900">{healthPercentage}%</span>
+                          <span className="text-[7.5px] uppercase font-bold tracking-wider text-gray-500">Health</span>
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Location context</span>
+                        <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Location context</span>
                         <div className="text-base md:text-sm md:text-xs font-bold text-dark-850">{currentTwinMachine.location} | Dept: {currentTwinMachine.dept}</div>
-                        <span className="text-xs md:text-[10px] text-gray-text font-semibold block">Last Update: Just Now</span>
+                        <span className="text-xs md:text-[10px] text-gray-500 font-semibold block">Last Update: Just Now</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Middle Column: Live Telemetry Parameters & Progress Bars */}
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
                     <div>
-                      <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 mb-4 flex items-center gap-1.5">
+                      <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 mb-4 flex items-center gap-1.5">
                         <Activity className="w-4 h-4 text-primary-500" />
                         Live Sensor Bus Telemetry
                       </h4>
@@ -3326,7 +3326,7 @@ export const Dashboard = () => {
                       <div className="space-y-4">
                         {/* Temperature Parameter */}
                         <div className="space-y-1.5">
-                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-dark-800">
+                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-gray-800">
                             <span className="flex items-center gap-1"><Thermometer className="w-3.5 h-3.5 text-red-500" /> Temperature</span>
                             <span>{currentTwinMachine.temp}°C</span>
                           </div>
@@ -3342,7 +3342,7 @@ export const Dashboard = () => {
 
                         {/* Vibration Parameter */}
                         <div className="space-y-1.5">
-                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-dark-800">
+                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-gray-800">
                             <span className="flex items-center gap-1"><Sliders className="w-3.5 h-3.5 text-amber-500" /> Vibration level</span>
                             <span>{currentTwinMachine.vibration} g</span>
                           </div>
@@ -3358,7 +3358,7 @@ export const Dashboard = () => {
 
                         {/* Current Parameter */}
                         <div className="space-y-1.5">
-                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-dark-800">
+                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-gray-800">
                             <span className="flex items-center gap-1"><Zap className="w-3.5 h-3.5 text-emerald-500" /> Stator Current</span>
                             <span>{currentTwinMachine.current} A</span>
                           </div>
@@ -3374,7 +3374,7 @@ export const Dashboard = () => {
 
                         {/* RPM Parameter */}
                         <div className="space-y-1.5">
-                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-dark-800">
+                          <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-gray-800">
                             <span className="flex items-center gap-1"><RotateCcw className="w-3.5 h-3.5 text-indigo-500" /> Rotational Speed</span>
                             <span>{currentTwinMachine.rpm} RPM</span>
                           </div>
@@ -3391,7 +3391,7 @@ export const Dashboard = () => {
                         {/* Pressure Parameter */}
                         {currentTwinMachine.pressure > 0 && (
                           <div className="space-y-1.5">
-                            <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-dark-800">
+                            <div className="flex justify-between text-base md:text-sm md:text-xs font-bold text-gray-800">
                               <span className="flex items-center gap-1"><Gauge className="w-3.5 h-3.5 text-blue-500" /> Manifold Pressure</span>
                               <span>{currentTwinMachine.pressure} bar</span>
                             </div>
@@ -3408,8 +3408,8 @@ export const Dashboard = () => {
                       </div>
                     </div>
 
-                    <div className="bg-dark-50/50 p-4 rounded-xl border border-dark-100">
-                      <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block mb-1">Energy consumption context</span>
+                    <div className="bg-white/50 p-4 rounded-xl border border-gray-100">
+                      <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block mb-1">Energy consumption context</span>
                       <div className="flex justify-between items-center text-base md:text-sm md:text-xs font-bold text-dark-850">
                         <span>Active load:</span>
                         <span>{currentTwinMachine.energy || '10.5'} kW</span>
@@ -3418,24 +3418,24 @@ export const Dashboard = () => {
                   </div>
 
                   {/* Right Column: AI Analytics & Action Center */}
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-6 flex flex-col justify-between">
                     <div>
-                      <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 mb-4 flex items-center gap-1.5">
+                      <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 mb-4 flex items-center gap-1.5">
                         <Sparkles className="w-4 h-4 text-primary-500" />
                         Edge AI Diagnostics
                       </h4>
 
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-dark-50/55 p-3 rounded-xl border border-dark-100">
-                          <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Failure Probability</span>
-                          <span className="text-lg font-black text-dark-900 mt-1 block">{currentTwinMachine.failureProbability}%</span>
+                        <div className="bg-white/55 p-3 rounded-xl border border-gray-100">
+                          <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Failure Probability</span>
+                          <span className="text-lg font-black text-gray-900 mt-1 block">{currentTwinMachine.failureProbability}%</span>
                         </div>
-                        <div className="bg-dark-50/55 p-3 rounded-xl border border-dark-100">
-                          <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Confidence Score</span>
-                          <span className="text-lg font-black text-dark-900 mt-1 block">{currentTwinMachine.aiConfidence ?? 95}%</span>
+                        <div className="bg-white/55 p-3 rounded-xl border border-gray-100">
+                          <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Confidence Score</span>
+                          <span className="text-lg font-black text-gray-900 mt-1 block">{currentTwinMachine.aiConfidence ?? 95}%</span>
                         </div>
-                        <div className="bg-dark-50/55 p-3 rounded-xl border border-dark-100 col-span-2">
-                          <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Remaining Useful Life (RUL)</span>
+                        <div className="bg-white/55 p-3 rounded-xl border border-gray-100 col-span-2">
+                          <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Remaining Useful Life (RUL)</span>
                           <span className="text-base md:text-sm font-extrabold text-dark-850 mt-1 block flex items-center gap-1">
                             <Clock className="w-4 h-4 text-primary-500" />
                             {currentTwinMachine.rul} Operating Hours
@@ -3445,13 +3445,13 @@ export const Dashboard = () => {
 
                       <div className="mt-5 border border-primary-100 bg-primary-50/20 p-4 rounded-xl space-y-1.5">
                         <span className="text-xs md:text-[9px] uppercase tracking-wider text-primary-700 font-extrabold block">AI Suggested Maintenance</span>
-                        <p className="text-base md:text-sm md:text-xs font-bold text-dark-800 leading-normal">
+                        <p className="text-base md:text-sm md:text-xs font-bold text-gray-800 leading-normal">
                           {currentTwinMachine.suggestedAction || 'All parameters stable. No maintenance required.'}
                         </p>
                       </div>
                     </div>
 
-                    <div className="bg-dark-50/60 p-4 rounded-xl border border-dark-100 text-xs md:text-[10.5px] text-gray-text leading-relaxed">
+                    <div className="bg-white/60 p-4 rounded-xl border border-gray-100 text-xs md:text-[10.5px] text-gray-500 leading-relaxed">
                       🧠 <span className="font-bold text-dark-850">Local AI Decision Logic:</span> {currentTwinMachine.explanation || 'Sensor readings are stable and matching baseline profiles.'}
                     </div>
                   </div>
@@ -3460,17 +3460,17 @@ export const Dashboard = () => {
                 {/* Bottom Row: Alerts Timeline & Maintenance Activity Logs */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Incident alerts block */}
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 flex items-center gap-1.5">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-1.5">
                       <Bell className="w-4 h-4 text-red-500" />
                       Active Incident Alerts
                     </h4>
                     {twinAlerts.length > 0 ? (
                       <div className="space-y-3">
                         {twinAlerts.map(a => (
-                          <div key={a.id} className="p-3 border border-dark-100 bg-dark-50/20 rounded-xl flex justify-between items-start gap-4">
+                          <div key={a.id} className="p-3 border border-gray-100 bg-white/20 rounded-xl flex justify-between items-start gap-4">
                             <div className="space-y-1 text-base md:text-sm md:text-xs">
-                              <span className="font-mono text-xs md:text-[9px] uppercase bg-dark-100 px-1.5 py-0.5 rounded text-gray-text font-bold">{a.id}</span>
+                              <span className="font-mono text-xs md:text-[9px] uppercase bg-dark-100 px-1.5 py-0.5 rounded text-gray-500 font-bold">{a.id}</span>
                               <p className="font-bold text-dark-850 mt-1">{a.summary}</p>
                             </div>
                             <span className="px-2 py-0.5 border rounded text-[9.5px] uppercase font-extrabold bg-red-50 text-red-700 border-red-200">{a.priority}</span>
@@ -3478,33 +3478,33 @@ export const Dashboard = () => {
                         ))}
                       </div>
                     ) : (
-                      <div className="text-center py-6 text-base md:text-sm md:text-xs text-gray-text font-semibold">
+                      <div className="text-center py-6 text-base md:text-sm md:text-xs text-gray-500 font-semibold">
                         ✅ No active cybersecurity or mechanical incidents recorded on this node.
                       </div>
                     )}
                   </div>
 
                   {/* Operational diagnostics timeline */}
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2 flex items-center gap-1.5">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2 flex items-center gap-1.5">
                       <Clock className="w-4 h-4 text-primary-500" />
                       AI Decision Timeline Logs
                     </h4>
-                    <div className="space-y-3.5 text-xs md:text-[11px] font-semibold text-gray-text relative pl-4 border-l border-dark-200 ml-2">
+                    <div className="space-y-3.5 text-xs md:text-[11px] font-semibold text-gray-500 relative pl-4 border-l border-gray-200 ml-2">
                       <div className="relative">
                         <span className="absolute -left-[20.5px] top-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-white" />
                         <span className="font-mono text-xs md:text-[9px] block">JUST NOW</span>
-                        <p className="text-dark-800 font-bold">Telemetry tick verified locally over WebSocket stream. Operational status: {currentTwinMachine.status}.</p>
+                        <p className="text-gray-800 font-bold">Telemetry tick verified locally over WebSocket stream. Operational status: {currentTwinMachine.status}.</p>
                       </div>
                       <div className="relative">
                         <span className="absolute -left-[20.5px] top-1 w-2.5 h-2.5 rounded-full bg-primary-500 border border-white" />
                         <span className="font-mono text-xs md:text-[9px] block">10 MINS AGO</span>
-                        <p className="text-dark-800">Local predictive model checked RUL metrics. Estimated health index verified at {healthPercentage}%.</p>
+                        <p className="text-gray-800">Local predictive model checked RUL metrics. Estimated health index verified at {healthPercentage}%.</p>
                       </div>
                       <div className="relative">
                         <span className="absolute -left-[20.5px] top-1 w-2.5 h-2.5 rounded-full bg-dark-300 border border-white" />
                         <span className="font-mono text-xs md:text-[9px] block">1 HOUR AGO</span>
-                        <p className="text-dark-800">Operator panel connection verified. Virtual twin representation node instantiated.</p>
+                        <p className="text-gray-800">Operator panel connection verified. Virtual twin representation node instantiated.</p>
                       </div>
                     </div>
                   </div>
@@ -3556,14 +3556,14 @@ export const Dashboard = () => {
 
             if (factoriesViewMode === 'list') {
               return (
-                <div className="space-y-6 font-sans animate-fade-in text-dark-800">
+                <div className="space-y-6 font-sans animate-fade-in text-gray-800">
                   {/* Action Filters Panel bar */}
-                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white border border-dark-200 rounded-2xl p-4 shadow-sm gap-4">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white border border-gray-200 rounded-xl p-5 shadow-sm gap-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-primary-50 rounded-xl text-primary-600"><Globe className="w-5 h-5" /></div>
                       <div>
-                        <h3 className="text-base md:text-sm font-bold text-dark-900">Multi-Factory Virtual Hub</h3>
-                        <p className="text-xs md:text-[10px] text-gray-text mt-0.5">Centralized operational visibility across international facilities</p>
+                        <h3 className="text-base md:text-sm font-bold text-gray-900">Multi-Factory Virtual Hub</h3>
+                        <p className="text-xs md:text-[10px] text-gray-500 mt-0.5">Centralized operational visibility across international facilities</p>
                       </div>
                     </div>
                     
@@ -3576,23 +3576,23 @@ export const Dashboard = () => {
                   </div>
 
                   {/* Filters block layout */}
-                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 bg-white border border-dark-200 rounded-2xl p-4 shadow-sm text-base md:text-sm md:text-xs font-bold text-dark-800">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 bg-white border border-gray-200 rounded-xl p-5 shadow-sm text-base md:text-sm md:text-xs font-bold text-gray-800">
                     <div className="space-y-1">
-                      <label className="text-[9.5px] uppercase text-gray-text font-extrabold block">Search Nodes</label>
+                      <label className="text-[9.5px] uppercase text-gray-500 font-extrabold block">Search Nodes</label>
                       <input 
                         type="text" 
                         value={factorySearch}
                         onChange={(e) => setFactorySearch(e.target.value)}
                         placeholder="Search name or code..."
-                        className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[9.5px] uppercase text-gray-text font-extrabold block">Region / Country</label>
+                      <label className="text-[9.5px] uppercase text-gray-500 font-extrabold block">Region / Country</label>
                       <select 
                         value={factoryFilterLocation}
                         onChange={(e) => setFactoryFilterLocation(e.target.value)}
-                        className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
                       >
                         <option value="All">All Locations</option>
                         <option value="USA">USA</option>
@@ -3601,11 +3601,11 @@ export const Dashboard = () => {
                       </select>
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[9.5px] uppercase text-gray-text font-extrabold block">Health Index</label>
+                      <label className="text-[9.5px] uppercase text-gray-500 font-extrabold block">Health Index</label>
                       <select 
                         value={factoryFilterStatus}
                         onChange={(e) => setFactoryFilterStatus(e.target.value)}
-                        className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
                       >
                         <option value="All">All Statuses</option>
                         <option value="Healthy">Healthy (Green)</option>
@@ -3614,11 +3614,11 @@ export const Dashboard = () => {
                       </select>
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[9.5px] uppercase text-gray-text font-extrabold block">Sort Ordering</label>
+                      <label className="text-[9.5px] uppercase text-gray-500 font-extrabold block">Sort Ordering</label>
                       <select 
                         value={factorySortKey}
                         onChange={(e) => setFactorySortKey(e.target.value)}
-                        className="w-full border border-dark-200 rounded-xl px-3 py-2 bg-dark-50 text-base md:text-sm md:text-xs outline-none focus:bg-white"
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2 bg-white text-base md:text-sm md:text-xs outline-none focus:bg-white"
                       >
                         <option value="name">Factory Name (A-Z)</option>
                         <option value="health">Health score (Highest)</option>
@@ -3629,23 +3629,23 @@ export const Dashboard = () => {
                   {/* Add factory modal pop-up rendering */}
                   {showAddFactoryModal && (
                     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                      <div className="bg-white border border-dark-200 rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl">
-                        <div className="flex justify-between items-center border-b border-dark-100 pb-2">
-                          <h4 className="text-base md:text-sm font-bold text-dark-900">Add Factory Node</h4>
-                          <button onClick={() => setShowAddFactoryModal(false)} className="text-gray-400 hover:text-dark-600 font-bold">✕</button>
+                      <div className="bg-white border border-gray-200 rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl">
+                        <div className="flex justify-between items-center border-b border-gray-100 pb-2">
+                          <h4 className="text-base md:text-sm font-bold text-gray-900">Add Factory Node</h4>
+                          <button onClick={() => setShowAddFactoryModal(false)} className="text-gray-400 hover:text-gray-600 font-bold">✕</button>
                         </div>
                         <form onSubmit={handleAddFactory} className="space-y-3.5 text-base md:text-sm md:text-xs font-bold text-dark-850">
                           <div className="space-y-1">
-                            <label className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Factory Name</label>
-                            <input type="text" value={newFactoryName} onChange={(e) => setNewFactoryName(e.target.value)} required placeholder="e.g. Detroit Assembly Hub" className="w-full border rounded-xl px-3 py-2 bg-dark-50 focus:bg-white outline-none" />
+                            <label className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Factory Name</label>
+                            <input type="text" value={newFactoryName} onChange={(e) => setNewFactoryName(e.target.value)} required placeholder="e.g. Detroit Assembly Hub" className="w-full border rounded-xl px-3 py-2 bg-white focus:bg-white outline-none" />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Unique Factory Code</label>
-                            <input type="text" value={newFactoryCode} onChange={(e) => setNewFactoryCode(e.target.value)} required placeholder="e.g. FAC-DET4" className="w-full border rounded-xl px-3 py-2 bg-dark-50 focus:bg-white outline-none" />
+                            <label className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Unique Factory Code</label>
+                            <input type="text" value={newFactoryCode} onChange={(e) => setNewFactoryCode(e.target.value)} required placeholder="e.g. FAC-DET4" className="w-full border rounded-xl px-3 py-2 bg-white focus:bg-white outline-none" />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Geographic Location</label>
-                            <input type="text" value={newFactoryLoc} onChange={(e) => setNewFactoryLoc(e.target.value)} placeholder="e.g. Michigan, USA" className="w-full border rounded-xl px-3 py-2 bg-dark-50 focus:bg-white outline-none" />
+                            <label className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Geographic Location</label>
+                            <input type="text" value={newFactoryLoc} onChange={(e) => setNewFactoryLoc(e.target.value)} placeholder="e.g. Michigan, USA" className="w-full border rounded-xl px-3 py-2 bg-white focus:bg-white outline-none" />
                           </div>
                           <button type="submit" className="w-full py-3 md:py-2 bg-primary-600 text-white rounded-xl font-bold shadow-md shadow-primary-600/10 hover:bg-primary-700 transition-smooth">Register Factory Node</button>
                         </form>
@@ -3658,40 +3658,40 @@ export const Dashboard = () => {
                     {filteredFactories.map(f => {
                       const healthColorBadge = f.healthScore > 90 ? 'text-emerald-700 bg-emerald-50 border-emerald-250' : f.healthScore > 75 ? 'text-amber-700 bg-amber-50 border-amber-250' : 'text-red-750 bg-red-50 border-red-200';
                       return (
-                        <div key={f.code} className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4 hover:shadow-md hover:scale-[1.01] transition-all duration-200 flex flex-col justify-between">
+                        <div key={f.code} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4 hover:shadow-md hover:scale-[1.01] transition-all duration-200 flex flex-col justify-between">
                           <div className="space-y-2">
                             <div className="flex justify-between items-start">
                               <div>
-                                <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 leading-tight">{f.name}</h4>
-                                <span className="text-xs md:text-[9px] font-mono text-gray-text tracking-wide">{f.code} | {f.location}</span>
+                                <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 leading-tight">{f.name}</h4>
+                                <span className="text-xs md:text-[9px] font-mono text-gray-500 tracking-wide">{f.code} | {f.location}</span>
                               </div>
                               <span className={`px-2 py-0.5 rounded text-[9.5px] font-extrabold uppercase border ${healthColorBadge}`}>
                                 {f.healthScore}% Health
                               </span>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-2 py-2 border-y border-dark-100 text-xs md:text-[10.5px]">
+                            <div className="grid grid-cols-3 gap-2 py-2 border-y border-gray-100 text-xs md:text-[10.5px]">
                               <div className="text-center">
                                 <span className="text-emerald-600 font-extrabold block text-base md:text-sm md:text-xs">{f.healthyCount}</span>
-                                <span className="text-[7.5px] text-gray-text font-bold uppercase tracking-wider">Healthy</span>
+                                <span className="text-[7.5px] text-gray-500 font-bold uppercase tracking-wider">Healthy</span>
                               </div>
                               <div className="text-center">
                                 <span className="text-amber-500 font-extrabold block text-base md:text-sm md:text-xs">{f.warningCount}</span>
-                                <span className="text-[7.5px] text-gray-text font-bold uppercase tracking-wider">Warning</span>
+                                <span className="text-[7.5px] text-gray-500 font-bold uppercase tracking-wider">Warning</span>
                               </div>
                               <div className="text-center">
                                 <span className="text-red-500 font-extrabold block text-base md:text-sm md:text-xs">{f.criticalCount}</span>
-                                <span className="text-[7.5px] text-gray-text font-bold uppercase tracking-wider">Critical</span>
+                                <span className="text-[7.5px] text-gray-500 font-bold uppercase tracking-wider">Critical</span>
                               </div>
                             </div>
 
-                            <div className="space-y-1.5 text-xs md:text-[11px] font-bold text-dark-800">
+                            <div className="space-y-1.5 text-xs md:text-[11px] font-bold text-gray-800">
                               <div className="flex justify-between">
-                                <span className="text-gray-text">Active Alert Events:</span>
+                                <span className="text-gray-500">Active Alert Events:</span>
                                 <span className={f.activeAlerts > 0 ? 'text-red-500' : 'text-emerald-600'}>{f.activeAlerts} Alerts</span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-text">Energy Efficiency:</span>
+                                <span className="text-gray-500">Energy Efficiency:</span>
                                 <span>{f.energyEfficiency}</span>
                               </div>
                             </div>
@@ -3725,19 +3725,19 @@ export const Dashboard = () => {
             const facMachines = machines.filter(m => currentFac.code === 'FAC-DET4' ? true : false); // Mock machines matching current factory context
             
             return (
-              <div className="space-y-6 font-sans animate-fade-in text-dark-800">
+              <div className="space-y-6 font-sans animate-fade-in text-gray-800">
                 {/* Back bar */}
-                <div className="flex justify-between items-center bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
+                <div className="flex justify-between items-center bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => setFactoriesViewMode('list')}
-                      className="p-2 border border-dark-200 hover:bg-dark-50 rounded-xl text-dark-600 transition-colors"
+                      className="p-2 border border-gray-200 hover:bg-white rounded-xl text-gray-600 transition-colors"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <div>
-                      <h3 className="text-base md:text-sm font-bold text-dark-900">{currentFac.name} Detailed Console</h3>
-                      <span className="text-xs md:text-[10px] font-mono text-gray-text">{currentFac.code} | {currentFac.location}</span>
+                      <h3 className="text-base md:text-sm font-bold text-gray-900">{currentFac.name} Detailed Console</h3>
+                      <span className="text-xs md:text-[10px] font-mono text-gray-500">{currentFac.code} | {currentFac.location}</span>
                     </div>
                   </div>
                   <span className="bg-emerald-50 border border-emerald-250 text-emerald-700 text-xs md:text-[9px] px-2.5 py-0.5 rounded font-extrabold uppercase tracking-wider">
@@ -3747,28 +3747,28 @@ export const Dashboard = () => {
 
                 {/* Operations KPIs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Health Score</span>
-                    <span className="text-xl font-black text-dark-900 mt-1 block">{currentFac.healthScore}%</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Health Score</span>
+                    <span className="text-xl font-black text-gray-900 mt-1 block">{currentFac.healthScore}%</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Active Devices</span>
-                    <span className="text-xl font-black text-dark-900 mt-1 block">{facMachines.length} Machines</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Active Devices</span>
+                    <span className="text-xl font-black text-gray-900 mt-1 block">{facMachines.length} Machines</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Power Usage</span>
-                    <span className="text-xl font-black text-dark-900 mt-1 block">92.4 kW</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Power Usage</span>
+                    <span className="text-xl font-black text-gray-900 mt-1 block">92.4 kW</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Energy Target</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Energy Target</span>
                     <span className="text-xl font-black text-emerald-600 mt-1 block">{currentFac.energyEfficiency}</span>
                   </div>
                 </div>
 
                 {/* ─── FACTORY ANALYTICS INTEGRATION ─── */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Active Machinery Health Analytics</h4>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Active Machinery Health Analytics</h4>
                     <div className="h-56">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={facMachines}>
@@ -3782,8 +3782,8 @@ export const Dashboard = () => {
                     </div>
                   </div>
 
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Daily Energy Consumptive Load</h4>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Daily Energy Consumptive Load</h4>
                     <div className="h-56">
                       <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={facMachines}>
@@ -3801,8 +3801,8 @@ export const Dashboard = () => {
                 {/* Department layout & assigned machinery list */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Departments checklist */}
-                  <div className="bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Departmental Matrices</h4>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Departmental Matrices</h4>
                     <div className="space-y-3">
                       {[
                         { name: 'Production', count: 3, health: 96, alerts: 0 },
@@ -3810,10 +3810,10 @@ export const Dashboard = () => {
                         { name: 'Logistics', count: 1, health: 91, alerts: 0 },
                         { name: 'Stamping', count: 1, health: 82, alerts: 0 }
                       ].map(d => (
-                        <div key={d.name} className="p-3 border border-dark-100 bg-dark-50/20 rounded-xl flex justify-between items-center text-base md:text-sm md:text-xs">
+                        <div key={d.name} className="p-3 border border-gray-100 bg-white/20 rounded-xl flex justify-between items-center text-base md:text-sm md:text-xs">
                           <div>
                             <span className="font-bold text-dark-850 block">{d.name}</span>
-                            <span className="text-xs md:text-[10px] text-gray-text font-semibold">{d.count} Assigned Machine(s)</span>
+                            <span className="text-xs md:text-[10px] text-gray-500 font-semibold">{d.count} Assigned Machine(s)</span>
                           </div>
                           <span className={`px-2 py-0.5 rounded text-[9.5px] font-extrabold border ${
                             d.health > 90 ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
@@ -3824,12 +3824,12 @@ export const Dashboard = () => {
                   </div>
 
                   {/* Machine Telemetry Grid */}
-                  <div className="lg:col-span-2 bg-white border border-dark-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Central Node Status Table</h4>
+                  <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Central Node Status Table</h4>
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse text-base md:text-sm md:text-xs">
                         <thead>
-                          <tr className="border-b border-dark-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-text bg-dark-50/50">
+                          <tr className="border-b border-gray-200 text-xs md:text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-white/50">
                             <th className="py-2 px-3">Machine</th>
                             <th className="py-2 px-3">Temp</th>
                             <th className="py-2 px-3">Vibration</th>
@@ -3841,7 +3841,7 @@ export const Dashboard = () => {
                         <tbody className="divide-y divide-dark-100 font-semibold text-dark-850">
                           {facMachines.map(m => (
                             <tr key={m.id}>
-                              <td className="py-2.5 px-3 font-bold text-dark-900">{m.name}</td>
+                              <td className="py-2.5 px-3 font-bold text-gray-900">{m.name}</td>
                               <td className="py-2.5 px-3">{m.temp}°C</td>
                               <td className="py-2.5 px-3">{m.vibration} g</td>
                               <td className="py-2.5 px-3">{m.rpm} RPM</td>
@@ -3868,14 +3868,14 @@ export const Dashboard = () => {
             const totalLoad = machines.reduce((acc, m) => acc + (m.energy || 12), 0).toFixed(1);
 
             return (
-              <div className="space-y-6 font-sans animate-fade-in text-dark-800">
+              <div className="space-y-6 font-sans animate-fade-in text-gray-800">
                 {/* Header overview toolbar panel */}
-                <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                   <div>
-                    <h2 className="text-base font-extrabold text-dark-900 tracking-tight flex items-center gap-2">
+                    <h2 className="text-base font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
                       📊 Enterprise Business Intelligence Overview
                     </h2>
-                    <p className="text-base md:text-sm md:text-xs text-gray-text mt-0.5">Calculates executive KPIs, financial metrics, and total downtime prevention indices locally on the edge.</p>
+                    <p className="text-base md:text-sm md:text-xs text-gray-500 mt-0.5">Calculates executive KPIs, financial metrics, and total downtime prevention indices locally on the edge.</p>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <span className="text-xs md:text-[10px] bg-emerald-50 border border-emerald-250 text-emerald-700 px-2.5 py-0.5 rounded font-bold uppercase">
@@ -3886,20 +3886,20 @@ export const Dashboard = () => {
 
                 {/* Operations KPIs list */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Avg Machine Health</span>
-                    <span className="text-xl font-black text-dark-900 mt-1 block">{avgHealth}%</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Avg Machine Health</span>
+                    <span className="text-xl font-black text-gray-900 mt-1 block">{avgHealth}%</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Downtime Prevented</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Downtime Prevented</span>
                     <span className="text-xl font-black text-emerald-600 mt-1 block">184.5 Hours</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">Total Energy Load</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">Total Energy Load</span>
                     <span className="text-xl font-black text-amber-600 mt-1 block">{totalLoad} kW</span>
                   </div>
-                  <div className="bg-white border border-dark-200 rounded-2xl p-4 shadow-sm">
-                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-text font-extrabold block">AI Accuracy Rate</span>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <span className="text-xs md:text-[9px] uppercase tracking-wider text-gray-500 font-extrabold block">AI Accuracy Rate</span>
                     <span className="text-xl font-black text-primary-600 mt-1 block">99.2%</span>
                   </div>
                 </div>
@@ -3907,8 +3907,8 @@ export const Dashboard = () => {
                 {/* Two Column details analytics charts block */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Left: Interactive charts */}
-                  <div className="lg:col-span-2 bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4">
-                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Facility Machinery Utilization Indices</h4>
+                  <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4">
+                    <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Facility Machinery Utilization Indices</h4>
                     <div className="h-64">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={machines}>
@@ -3924,16 +3924,16 @@ export const Dashboard = () => {
                   </div>
 
                   {/* Right: Executive Business summary insights */}
-                  <div className="bg-white border border-dark-200 rounded-3xl p-5 shadow-sm space-y-4 flex flex-col justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md space-y-4 flex flex-col justify-between">
                     <div>
-                      <h4 className="text-base md:text-sm md:text-xs font-extrabold text-dark-900 uppercase tracking-widest border-b border-dark-100 pb-2">Local Executive Summary</h4>
+                      <h4 className="text-base md:text-sm md:text-xs font-extrabold text-gray-900 uppercase tracking-widest border-b border-gray-100 pb-2">Local Executive Summary</h4>
                       <div className="space-y-3.5 mt-3 text-base md:text-sm md:text-xs font-semibold text-dark-850 leading-relaxed">
-                        <p>💡 <span className="font-bold text-dark-900">Preventive Maintenance:</span> Neural forecasting has successfully prevented approximately 184.5 hours of unplanned downtime this month by triggering early bearing wear diagnostics.</p>
-                        <p>⚡ <span className="font-bold text-dark-900">Energy Optimization:</span> Estimated power savings are calculated at 12.4% under optimized VFD speed settings on active conveyor drives.</p>
+                        <p>💡 <span className="font-bold text-gray-900">Preventive Maintenance:</span> Neural forecasting has successfully prevented approximately 184.5 hours of unplanned downtime this month by triggering early bearing wear diagnostics.</p>
+                        <p>⚡ <span className="font-bold text-gray-900">Energy Optimization:</span> Estimated power savings are calculated at 12.4% under optimized VFD speed settings on active conveyor drives.</p>
                       </div>
                     </div>
 
-                    <div className="bg-dark-50/50 p-4 rounded-xl border border-dark-100 text-xs md:text-[10px] leading-relaxed text-gray-text">
+                    <div className="bg-white/50 p-4 rounded-xl border border-gray-100 text-xs md:text-[10px] leading-relaxed text-gray-500">
                       📊 Security audits, carbon output offsets, and ROI evaluations are compiled offline using local SQLite data logs.
                     </div>
                   </div>
@@ -3968,7 +3968,7 @@ export const Dashboard = () => {
               className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 flex flex-col font-sans"
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-dark-150 bg-gradient-to-r from-primary-600 to-primary-700 flex-shrink-0">
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-primary-600 to-primary-700 flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
                     <HelpCircle className="w-4 h-4 text-white" />
@@ -3991,7 +3991,7 @@ export const Dashboard = () => {
 
                 {/* Quick Navigation */}
                 <div>
-                  <h3 className="text-xs md:text-[10px] font-extrabold uppercase tracking-widest text-gray-text mb-3 flex items-center gap-2">
+                  <h3 className="text-xs md:text-[10px] font-extrabold uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-2">
                     <span className="w-3.5 h-3.5 rounded bg-primary-100 flex items-center justify-center">
                       <Activity className="w-2.5 h-2.5 text-primary-600" />
                     </span>
@@ -4009,7 +4009,7 @@ export const Dashboard = () => {
                       <button
                         key={item.tab}
                         onClick={() => { setActiveTab(item.tab); setHelpPanelOpen(false); }}
-                        className="flex items-center gap-2 p-2.5 bg-dark-50 hover:bg-primary-50 hover:border-primary-300 border border-dark-200 rounded-xl text-xs md:text-[10.5px] font-bold text-dark-800 hover:text-primary-700 transition-colors text-left"
+                        className="flex items-center gap-2 p-2.5 bg-white hover:bg-primary-50 hover:border-primary-300 border border-gray-200 rounded-xl text-xs md:text-[10.5px] font-bold text-gray-800 hover:text-primary-700 transition-colors text-left"
                       >
                         <span className="text-base md:text-sm">{item.icon}</span>
                         <span>{item.label}</span>
@@ -4020,7 +4020,7 @@ export const Dashboard = () => {
 
                 {/* AI Copilot Commands */}
                 <div>
-                  <h3 className="text-xs md:text-[10px] font-extrabold uppercase tracking-widest text-gray-text mb-3 flex items-center gap-2">
+                  <h3 className="text-xs md:text-[10px] font-extrabold uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-2">
                     <span className="w-3.5 h-3.5 rounded bg-emerald-100 flex items-center justify-center">
                       <Sparkles className="w-2.5 h-2.5 text-emerald-600" />
                     </span>
@@ -4037,9 +4037,9 @@ export const Dashboard = () => {
                       { cmd: 'list all machines', desc: 'Show status overview of all assets' },
                       { cmd: 'show active cyber threats', desc: 'Audit OT network security' },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-3 p-2.5 rounded-xl bg-dark-50 border border-dark-150">
+                      <div key={i} className="flex items-start gap-3 p-2.5 rounded-xl bg-white border border-gray-200">
                         <code className="text-[9.5px] bg-primary-50 border border-primary-200 text-primary-700 font-mono px-2 py-0.5 rounded-md flex-shrink-0">{item.cmd}</code>
-                        <span className="text-xs md:text-[10.5px] text-gray-text font-semibold leading-tight">{item.desc}</span>
+                        <span className="text-xs md:text-[10.5px] text-gray-500 font-semibold leading-tight">{item.desc}</span>
                       </div>
                     ))}
                   </div>
@@ -4047,7 +4047,7 @@ export const Dashboard = () => {
 
                 {/* Keyboard Shortcuts */}
                 <div>
-                  <h3 className="text-xs md:text-[10px] font-extrabold uppercase tracking-widest text-gray-text mb-3 flex items-center gap-2">
+                  <h3 className="text-xs md:text-[10px] font-extrabold uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-2">
                     <span className="w-3.5 h-3.5 rounded bg-amber-100 flex items-center justify-center">
                       <Terminal className="w-2.5 h-2.5 text-amber-600" />
                     </span>
@@ -4062,8 +4062,8 @@ export const Dashboard = () => {
                       { key: 'Alt + S', action: 'Cybersecurity Monitor' },
                       { key: 'Esc', action: 'Close panels & modals' },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center justify-between text-xs md:text-[10.5px] font-semibold py-1.5 border-b border-dark-100 last:border-0">
-                        <span className="text-dark-700">{item.action}</span>
+                      <div key={i} className="flex items-center justify-between text-xs md:text-[10.5px] font-semibold py-1.5 border-b border-gray-100 last:border-0">
+                        <span className="text-gray-700">{item.action}</span>
                         <kbd className="px-2 py-0.5 bg-dark-900 text-white rounded-md text-xs md:text-[9px] font-mono font-bold tracking-wide">{item.key}</kbd>
                       </div>
                     ))}
@@ -4082,15 +4082,15 @@ export const Dashboard = () => {
                     ['Auth', 'JWT + Azure Entra ID SSO'],
                   ].map(([key, val]) => (
                     <div key={key} className="flex justify-between text-xs md:text-[10px] font-semibold">
-                      <span className="text-gray-text">{key}</span>
-                      <span className="text-dark-800 font-bold">{val}</span>
+                      <span className="text-gray-500">{key}</span>
+                      <span className="text-gray-800 font-bold">{val}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Support */}
                 <div className="text-center pb-2">
-                  <p className="text-xs md:text-[10px] text-gray-text font-semibold">Need more help?</p>
+                  <p className="text-xs md:text-[10px] text-gray-500 font-semibold">Need more help?</p>
                   <button
                     onClick={() => { setActiveTab('AI Copilot'); setHelpPanelOpen(false); }}
                     className="mt-2 px-5 py-2 bg-primary-600 hover:bg-primary-700 text-white text-xs md:text-[10.5px] font-extrabold rounded-xl transition-colors shadow-sm"

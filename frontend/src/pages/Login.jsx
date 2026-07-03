@@ -138,7 +138,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#0B1120] font-sans overflow-hidden relative">
+    <div className="min-h-screen w-full flex items-center justify-center bg-white font-sans overflow-hidden relative">
       
       {/* Animated Gradient Background Orbs */}
       <motion.div 
@@ -186,7 +186,7 @@ export const Login = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="bg-[#1E293B]/60 backdrop-blur-2xl rounded-[32px] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] border border-white/10 flex flex-col items-center"
+          className="bg-[#1E293B]/60  rounded-[32px] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] border border-white/10 flex flex-col items-center"
         >
           
           {/* Top Logo */}
@@ -196,12 +196,12 @@ export const Login = () => {
           >
             <div className="w-16 h-16 flex items-center justify-center relative">
               <div className="absolute inset-0 bg-blue-500 blur-xl opacity-40 rounded-full"></div>
-              <Shield className="w-12 h-12 text-blue-400 relative z-10" strokeWidth={1.5} />
+              <Shield className="w-12 h-12 text-blue-600 relative z-10" strokeWidth={1.5} />
             </div>
-            <span className="text-2xl font-bold tracking-tight text-white mt-2">
-              EDGE<span className="text-blue-500 font-extrabold">SHIELD</span> <span className="text-slate-400 font-light">AI</span>
+            <span className="text-2xl font-bold tracking-tight text-gray-900 mt-2">
+              EDGE<span className="text-blue-600 font-extrabold">SHIELD</span> <span className="text-gray-500 font-light">AI</span>
             </span>
-            <p className="text-slate-400 text-xs font-medium tracking-widest uppercase mt-1">Industrial Intelligence</p>
+            <p className="text-gray-500 text-xs font-medium tracking-widest uppercase mt-1">Industrial Intelligence</p>
           </motion.div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 w-full" noValidate>
@@ -211,10 +211,10 @@ export const Login = () => {
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="space-y-5 overflow-hidden">
                   <div className="space-y-1.5 pt-1">
                     <div className="relative group">
-                      <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 group-focus-within:text-blue-400 transition-colors"><User className="w-4.5 h-4.5" /></span>
+                      <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 group-focus-within:text-blue-600 transition-colors"><User className="w-4.5 h-4.5" /></span>
                       <input 
                         type="text"
-                        className="w-full pl-11 pr-4 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-slate-500 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
                         placeholder="Full Name"
                         {...register('name', { required: 'Name is required' })}
                       />
@@ -223,16 +223,16 @@ export const Login = () => {
 
                   <div className="space-y-1.5">
                     <div className="relative group">
-                      <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 group-focus-within:text-blue-400 transition-colors"><Sliders className="w-4.5 h-4.5" /></span>
+                      <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 group-focus-within:text-blue-600 transition-colors"><Sliders className="w-4.5 h-4.5" /></span>
                       <select 
-                        className="w-full pl-11 pr-4 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all cursor-pointer appearance-none"
+                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-slate-500 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all cursor-pointer appearance-none"
                         {...register('dept')}
                       >
-                        <option value="Administrator" className="bg-slate-800">Administrator</option>
-                        <option value="Plant Manager" className="bg-slate-800">Plant Manager</option>
-                        <option value="Maintenance Engineer" className="bg-slate-800">Maintenance Engineer</option>
-                        <option value="Production Supervisor" className="bg-slate-800">Production Supervisor</option>
-                        <option value="Security Analyst" className="bg-slate-800">Security Analyst</option>
+                        <option value="Administrator" className="bg-white">Administrator</option>
+                        <option value="Plant Manager" className="bg-white">Plant Manager</option>
+                        <option value="Maintenance Engineer" className="bg-white">Maintenance Engineer</option>
+                        <option value="Production Supervisor" className="bg-white">Production Supervisor</option>
+                        <option value="Security Analyst" className="bg-white">Security Analyst</option>
                       </select>
                     </div>
                   </div>
@@ -242,10 +242,10 @@ export const Login = () => {
 
             <div className="space-y-1">
               <div className="relative group">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 group-focus-within:text-blue-400 transition-colors"><Mail className="w-4.5 h-4.5" /></span>
+                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 group-focus-within:text-blue-600 transition-colors"><Mail className="w-4.5 h-4.5" /></span>
                 <input 
                   type="email"
-                  className="w-full pl-11 pr-4 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-slate-500 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
                   placeholder="Email Address"
                   {...register('email', { required: 'Email is required', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Invalid email' } })}
                 />
@@ -255,14 +255,14 @@ export const Login = () => {
 
             <div className="space-y-1">
               <div className="relative group">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 group-focus-within:text-blue-400 transition-colors"><Lock className="w-4.5 h-4.5" /></span>
+                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 group-focus-within:text-blue-600 transition-colors"><Lock className="w-4.5 h-4.5" /></span>
                 <input 
                   type={showPassword ? 'text' : 'password'}
-                  className="w-full pl-11 pr-12 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full pl-11 pr-12 py-3.5 bg-slate-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-slate-500 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
                   placeholder="Password"
                   {...register('password', { required: 'Password is required' })}
                 />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-white transition-colors" tabIndex="-1">
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-500 hover:text-gray-900 transition-colors" tabIndex="-1">
                   {showPassword ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
                 </button>
               </div>
@@ -273,10 +273,10 @@ export const Login = () => {
               {isSignUp && (
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="space-y-1">
                   <div className="relative group mt-5">
-                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 group-focus-within:text-blue-400 transition-colors"><Lock className="w-4.5 h-4.5" /></span>
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 group-focus-within:text-blue-600 transition-colors"><Lock className="w-4.5 h-4.5" /></span>
                     <input 
                       type={showPassword ? 'text' : 'password'}
-                      className="w-full pl-11 pr-4 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                      className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-slate-500 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
                       placeholder="Confirm Password"
                       {...register('confirmPassword', { validate: val => val === watchPassword || 'Passwords do not match' })}
                     />
@@ -286,16 +286,16 @@ export const Login = () => {
               )}
             </AnimatePresence>
 
-            <div className="flex items-center justify-between text-sm font-medium text-slate-400 pt-1 px-1">
+            <div className="flex items-center justify-between text-sm font-medium text-gray-500 pt-1 px-1">
               <label className="flex items-center gap-2.5 cursor-pointer select-none group">
                 <input 
                   type="checkbox" 
-                  className="rounded border-slate-600 bg-slate-800 text-blue-500 focus:ring-blue-500 focus:ring-offset-slate-900 w-4 h-4 transition-colors"
+                  className="rounded border-gray-300 bg-white text-blue-600 focus:ring-blue-500 focus:ring-offset-white w-4 h-4 transition-colors"
                   {...register('rememberMe')}
                 />
-                <span className="group-hover:text-slate-300 transition-colors">Remember me</span>
+                <span className="group-hover:text-gray-700 transition-colors">Remember me</span>
               </label>
-              <a href="#forgot" className="hover:text-white transition-colors">Forgot password?</a>
+              <a href="#forgot" className="hover:text-gray-900 transition-colors">Forgot password?</a>
             </div>
 
             <motion.button
@@ -303,15 +303,15 @@ export const Login = () => {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] mt-4"
+              className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-500/30 mt-4"
             >
               {isSubmitting ? <Spinner size="sm" /> : <span>{isSignUp ? 'Create Account' : 'Sign In'}</span>}
             </motion.button>
           </form>
 
           <div className="relative my-7 w-full">
-            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-700" /></div>
-            <div className="relative flex justify-center text-[10px] font-bold uppercase tracking-widest"><span className="bg-[#1a2333] px-4 text-slate-400 rounded-full border border-slate-700">SSO Integration</span></div>
+            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+            <div className="relative flex justify-center text-[10px] font-bold uppercase tracking-widest"><span className="bg-white px-4 text-gray-500 rounded-full border border-gray-200">SSO Integration</span></div>
           </div>
 
           <motion.button
@@ -320,7 +320,7 @@ export const Login = () => {
             type="button"
             onClick={handleMicrosoftLogin}
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center gap-3 py-3.5 bg-slate-800/50 border border-slate-700/50 text-white font-semibold text-sm rounded-xl transition-all hover:border-slate-600 shadow-sm"
+            className="w-full flex items-center justify-center gap-3 py-3.5 bg-slate-50 border border-gray-200 text-gray-900 font-semibold text-sm rounded-xl transition-all hover:border-gray-300 shadow-sm"
           >
             <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 23 23" fill="none">
               <rect width="10.5" height="10.5" fill="#F25022"/>
@@ -332,12 +332,12 @@ export const Login = () => {
           </motion.button>
 
           <div className="text-center mt-8 w-full">
-            <p className="text-sm text-slate-400 font-medium">
+            <p className="text-sm text-gray-500 font-medium">
               {isSignUp ? 'Already have an account?' : "Don't have a profile?"}{' '}
               <button
                 type="button"
                 onClick={() => { setIsSignUp(!isSignUp); setAuthError(''); setAuthSuccess(''); reset(); }}
-                className="text-blue-400 hover:text-blue-300 transition-colors font-bold cursor-pointer inline-flex items-center gap-1"
+                className="text-blue-600 hover:text-blue-700 transition-colors font-bold cursor-pointer inline-flex items-center gap-1"
               >
                 {isSignUp ? 'Sign In' : 'Register Operator'}
               </button>
